@@ -129,7 +129,7 @@ body {
 }
 .outer {
   max-width: 1220px;
-  margin: 0 auto;
+  margin: 0 autoh;
   padding: 0 20px;
 }
 .outer:before,
@@ -349,7 +349,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("images/banner.jpg") center #000;
+  background: url("http://7xsm7w.com1.z0.glb.clouddn.com/banner.jpg") center #000;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
