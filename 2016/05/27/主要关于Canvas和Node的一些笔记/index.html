@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>主要关于Canvas和Node的一些笔记 | 磊磊SAMA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="9.获取鼠标移动的位置，兼容各大主流浏览器（当然没有IE，他才不算主流，哼）
+1 document.addEventListener(&amp;quot;mousemove&amp;quot;, function(e) {
+2   var movementX = e.movementX   ||
+3   e.mozMovementX||
+4   e.webkitMovementX ||
+5   0,
+6   mo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="主要关于Canvas和Node的一些笔记">
+<meta property="og:url" content="http://yoursite.com/2016/05/27/主要关于Canvas和Node的一些笔记/index.html">
+<meta property="og:site_name" content="磊磊SAMA">
+<meta property="og:description" content="9.获取鼠标移动的位置，兼容各大主流浏览器（当然没有IE，他才不算主流，哼）
+1 document.addEventListener(&amp;quot;mousemove&amp;quot;, function(e) {
+2   var movementX = e.movementX   ||
+3   e.mozMovementX||
+4   e.webkitMovementX ||
+5   0,
+6   mo">
+<meta property="og:updated_time" content="2016-05-27T06:08:49.553Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="主要关于Canvas和Node的一些笔记">
+<meta name="twitter:description" content="9.获取鼠标移动的位置，兼容各大主流浏览器（当然没有IE，他才不算主流，哼）
+1 document.addEventListener(&amp;quot;mousemove&amp;quot;, function(e) {
+2   var movementX = e.movementX   ||
+3   e.mozMovementX||
+4   e.webkitMovementX ||
+5   0,
+6   mo">
+  
+    <link rel="alternate" href="/atom.xml" title="磊磊SAMA" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">磊磊SAMA</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">why don&#39;t you get to fly in the air?</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-主要关于Canvas和Node的一些笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/27/主要关于Canvas和Node的一些笔记/" class="article-date">
+  <time datetime="2016-05-27T11:52:14.000Z" itemprop="datePublished">2016-05-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      主要关于Canvas和Node的一些笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>9.获取鼠标移动的位置，兼容各大主流浏览器<em>（当然没有IE，他才不算主流，哼）</em></p>
+<pre><code>1 document.addEventListener(&quot;mousemove&quot;, function(e) {
+2   var movementX = e.movementX   ||
+3   e.mozMovementX||
+4   e.webkitMovementX ||
+5   0,
+6   movementY = e.movementY   ||
+7   e.mozMovementY||
+8   e.webkitMovementY ||
+9   0;
+10 
+11   // Print the mouse movement delta values
+12   console.log(&quot;movementX=&quot; + movementX, &quot;movementY=&quot; + movementY);
+13 }, false);
+</code></pre><p>IE和FF的定位有个1px的差别，实际上，IE的定位从0开始，FF的定位从1开始，FF永远会比IE大1px，需要根据实际情况处理。</p>
+<p>10.<code>currentColor</code>属性可以用于CSS中替代当前选择其中文字的颜色，可以应用到一些小ICON的使用上面，对应的做法就是将显示部分做成一个蒙版，透过蒙版可以看到背景色，这时我们设置文字的<code>hover</code>改变颜色就可以很方便的改变icon的颜色了。</p>
+<p>11.<code>background:#f00 url(background.gif) no-repeat fixed 0 0/100px 100px;</code><br>“ / ”前面的<code>0 0</code>，就是<code>background-position</code>， 后面的<code>100px 100px</code>， 就是background-size的值，这种格式下，<br>background-position的值不能省略。</p>
+<p>12.在canvas中使用socket即时通讯画图，使用越粗的线就会越卡，在线粗相同的情况下，实用的阴影越大也会更加卡，不过原因尚不清楚。</p>
+<p>13.有的智障编辑器是不会提示拼写错误的，今天早上就把<em>block</em>写成了<em>blcok</em>调试了一个小时的bug没发现问题</p>
+<p>14.在node里面进行路由操作的时候，一定不要把socket的connect事件加入到路由里面，不然会出现刷新一次多一个socket的情况。</p>
+<p>15.在node里面使用<code>res.writeHead</code>会发生报错的情况，不能够在发送出消息后设置头部，但是使用setHead不会产生这种错误，如果想要获取到cookie的话使用<code>req.headers.cookie</code>可以获取到<br>“schoolid=1;schoolName=%E9%87%8D%E5%BA%86%E9%82%AE%E7%94%B5%E5%A4%A7%E5%AD%A6; _ga=GA1.1.1329053600.1463749095; a=000”<br>这种形式的字符串，可以手动解析，也可以使用parse-cookie的中间件。并且，在set-cookie的时候如果不配置max-age的话，将使用默认的session属性；当max-age为<strong>负数或者零</strong>时，cookie将不起任何作用。</p>
+<p>16.（题外话）百度搜索的最近搜索全部存在localstorage里面的BDSUGSTORED数据，JSON格式哦。</p>
+<p>17.cookie的domain，代表了其作用域，即有效范围。</p>
+<p>一般是对应的http地址的最开始那部分的值。</p>
+<p>比如对于访问<a href="http://login.live.com//xxxx" target="_blank" rel="external">http://login.live.com//xxxx</a> 来说，cookie的domain是.live.com的话，那么就是和此网页相匹配，和此网页的Host=login.live.com相匹配，是有效的。</p>
+<p>尤其需要注意的是，cookie的domain所代表的含义。</p>
+<p>举例来说，如果一个cookie的domain是.live.com的话，那么对于去访问.users.storage.live.com</p>
+<p>或.storage.live.com类型的地址的话，是无效的，因为.live.com，其作用域，只是xxx.live.com，而并不包括xxx.users.storage.live.com或xxx.storage.live.com类型的地址。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/27/主要关于Canvas和Node的一些笔记/" data-id="ciopbw1kq0000uocsenmc94dw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/05/12/近期收获/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">page新建页面</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/27/主要关于Canvas和Node的一些笔记/">主要关于Canvas和Node的一些笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/12/近期收获/">page新建页面</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/12/测试页面/">测试页面</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/12/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 RockSAMA<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
