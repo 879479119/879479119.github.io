@@ -3,17 +3,35 @@
 <head>
   <meta charset="utf-8">
   
-  <title>磊磊SAMA</title>
+  <title>读Javascript高程之笔记 | 磊磊SAMA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这个人很懒，没有留下描述">
-<meta property="og:type" content="website">
-<meta property="og:title" content="磊磊SAMA">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="早期学习Javascript高程的一些笔记1.&amp;lt;button&amp;gt;标签的默认type等同于input里面的submit，所以非常容易出现问题
+2.对于不支持Script标签的浏览器，在里面用注释
+&amp;lt;script&amp;gt;&amp;lt;!--
+..........
+//--&amp;gt;&amp;lt;/script&amp;gt;
+3.如果没有&amp;lt;!Doctype&amp;gt;的标签，浏览器默认进入混杂模式，并且D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读Javascript高程之笔记">
+<meta property="og:url" content="http://yoursite.com/2016/05/28/读Javascript高程之笔记/index.html">
 <meta property="og:site_name" content="磊磊SAMA">
-<meta property="og:description" content="这个人很懒，没有留下描述">
+<meta property="og:description" content="早期学习Javascript高程的一些笔记1.&amp;lt;button&amp;gt;标签的默认type等同于input里面的submit，所以非常容易出现问题
+2.对于不支持Script标签的浏览器，在里面用注释
+&amp;lt;script&amp;gt;&amp;lt;!--
+..........
+//--&amp;gt;&amp;lt;/script&amp;gt;
+3.如果没有&amp;lt;!Doctype&amp;gt;的标签，浏览器默认进入混杂模式，并且D">
+<meta property="og:image" content="http://7xsm7w.com1.z0.glb.clouddn.com/giligili.gif">
+<meta property="og:updated_time" content="2016-05-28T09:14:45.491Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="磊磊SAMA">
-<meta name="twitter:description" content="这个人很懒，没有留下描述">
+<meta name="twitter:title" content="读Javascript高程之笔记">
+<meta name="twitter:description" content="早期学习Javascript高程的一些笔记1.&amp;lt;button&amp;gt;标签的默认type等同于input里面的submit，所以非常容易出现问题
+2.对于不支持Script标签的浏览器，在里面用注释
+&amp;lt;script&amp;gt;&amp;lt;!--
+..........
+//--&amp;gt;&amp;lt;/script&amp;gt;
+3.如果没有&amp;lt;!Doctype&amp;gt;的标签，浏览器默认进入混杂模式，并且D">
+<meta name="twitter:image" content="http://7xsm7w.com1.z0.glb.clouddn.com/giligili.gif">
   
     <link rel="alternate" href="/atom.xml" title="磊磊SAMA" type="application/atom+xml">
   
@@ -66,9 +84,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-读Javascript高程之笔记" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-读Javascript高程之笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/05/28/读Javascript高程之笔记/" class="article-date">
   <time datetime="2016-05-28T09:13:38.000Z" itemprop="datePublished">2016-05-28</time>
@@ -81,8 +97,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/28/读Javascript高程之笔记/">读Javascript高程之笔记</a>
+    <h1 class="article-title" itemprop="name">
+      读Javascript高程之笔记
     </h1>
   
 
@@ -302,230 +318,19 @@ If(b){Function c (){Alert(2333);}
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-主要关于Canvas和Node的一些笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/27/主要关于Canvas和Node的一些笔记/" class="article-date">
-  <time datetime="2016-05-27T11:52:14.000Z" itemprop="datePublished">2016-05-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/27/主要关于Canvas和Node的一些笔记/">主要关于Canvas和Node的一些笔记</a>
-    </h1>
+    <a href="/2016/05/27/主要关于Canvas和Node的一些笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">主要关于Canvas和Node的一些笔记</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>9.获取鼠标移动的位置，兼容各大主流浏览器<em>（当然没有IE，他才不算主流，哼）</em></p>
-<pre><code>1 document.addEventListener(&quot;mousemove&quot;, function(e) {
-2   var movementX = e.movementX   ||
-3   e.mozMovementX||
-4   e.webkitMovementX ||
-5   0,
-6   movementY = e.movementY   ||
-7   e.mozMovementY||
-8   e.webkitMovementY ||
-9   0;
-10 
-11   // Print the mouse movement delta values
-12   console.log(&quot;movementX=&quot; + movementX, &quot;movementY=&quot; + movementY);
-13 }, false);
-</code></pre><p>IE和FF的定位有个1px的差别，实际上，IE的定位从0开始，FF的定位从1开始，FF永远会比IE大1px，需要根据实际情况处理。</p>
-<p>10.<code>currentColor</code>属性可以用于CSS中替代当前选择其中文字的颜色，可以应用到一些小ICON的使用上面，对应的做法就是将显示部分做成一个蒙版，透过蒙版可以看到背景色，这时我们设置文字的<code>hover</code>改变颜色就可以很方便的改变icon的颜色了。</p>
-<p>11.<code>background:#f00 url(background.gif) no-repeat fixed 0 0/100px 100px;</code><br>“ / ”前面的<code>0 0</code>，就是<code>background-position</code>， 后面的<code>100px 100px</code>， 就是background-size的值，这种格式下，<br>background-position的值不能省略。</p>
-<p>12.在canvas中使用socket即时通讯画图，使用越粗的线就会越卡，在线粗相同的情况下，实用的阴影越大也会更加卡，不过原因尚不清楚。</p>
-<p>13.有的智障编辑器是不会提示拼写错误的，今天早上就把<em>block</em>写成了<em>blcok</em>调试了一个小时的bug没发现问题</p>
-<p>14.在node里面进行路由操作的时候，一定不要把socket的connect事件加入到路由里面，不然会出现刷新一次多一个socket的情况。</p>
-<p>15.在node里面使用<code>res.writeHead</code>会发生报错的情况，不能够在发送出消息后设置头部，但是使用setHead不会产生这种错误，如果想要获取到cookie的话使用<code>req.headers.cookie</code>可以获取到<br>“schoolid=1;schoolName=%E9%87%8D%E5%BA%86%E9%82%AE%E7%94%B5%E5%A4%A7%E5%AD%A6; _ga=GA1.1.1329053600.1463749095; a=000”<br>这种形式的字符串，可以手动解析，也可以使用parse-cookie的中间件。并且，在set-cookie的时候如果不配置max-age的话，将使用默认的session属性；当max-age为<strong>负数或者零</strong>时，cookie将不起任何作用。</p>
-<p>16.（题外话）百度搜索的最近搜索全部存在localstorage里面的BDSUGSTORED数据，JSON格式哦。</p>
-<p>17.cookie的domain，代表了其作用域，即有效范围。</p>
-<p>一般是对应的http地址的最开始那部分的值。</p>
-<p>比如对于访问<a href="http://login.live.com//xxxx" target="_blank" rel="external">http://login.live.com//xxxx</a> 来说，cookie的domain是.live.com的话，那么就是和此网页相匹配，和此网页的Host=login.live.com相匹配，是有效的。</p>
-<p>尤其需要注意的是，cookie的domain所代表的含义。</p>
-<p>举例来说，如果一个cookie的domain是.live.com的话，那么对于去访问.users.storage.live.com</p>
-<p>或.storage.live.com类型的地址的话，是无效的，因为.live.com，其作用域，只是xxx.live.com，而并不包括xxx.users.storage.live.com或xxx.storage.live.com类型的地址。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/27/主要关于Canvas和Node的一些笔记/" data-id="cioqxzakn0003kocsrodvtxyk" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-近期收获" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/12/近期收获/" class="article-date">
-  <time datetime="2016-05-12T11:52:14.000Z" itemprop="datePublished">2016-05-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/12/近期收获/">page新建页面</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="最近逛博客看到的有关性能优化的东西"><a href="#最近逛博客看到的有关性能优化的东西" class="headerlink" title="最近逛博客看到的有关性能优化的东西"></a>最近逛博客看到的有关性能优化的东西</h1><blockquote>
-<p>包括两个部分，一部分是有关于CSS动画这一方面的，另一部分是关于js性能方面的</p>
-</blockquote>
-<p>1.使用 <code>transform3d</code> api 代替 <code>transform</code> api，可以强制开启 GPU 加速，提升网站动画渲染性能；</p>
-<p>2.使用 CSS3 will-change 提高页面滚动、动画等渲染性能;</p>
-<p>3.chrome对于渲染很多大尺寸图片(尤其是alpha透明度PNG24图片)方面有先天的不足，从它版本10+的时候就有开发者在官方平台报过这个Bug，如今chrome已经更新至版本30+，却依旧没有完美解决这个顽疾。</p>
-<p>通过<code>-webkit-transform:transition3d/translateZ</code>开启GPU硬件加速之后，有些时候可能会导致浏览器频繁闪烁或抖动，可以尝试以下办法解决之：<br><code>-webkit-backface-visibility:hidden;</code><br><code>-webkit-perspective:1000;</code></p>
-<p>4.不要重构对象</p>
-<p>重构对象是很昂贵的操作，遵循下面的建议来避免：</p>
-<p>不使用 delete 操作符</p>
-<pre><code>删除一个属性，用 delete 会比通过 null 赋值慢很多，在火狐和 Chrome 中，
-null 赋值会快 99%，因为它不会修改对象的结构，但是 delete 会。
-</code></pre><p>不要添加属性</p>
-<pre><code>定义对象后，不要随后给对象添加属性，而是一开始就应该定义好对象的结构模式，
-这样运行速度会快很多(火狐上快 100%，Chrome 上快 89%)。
-</code></pre><p>5.声明 &amp; 传递局部作用域变量</p>
-<p>当调用一个函数时，浏览器会进行 作用域查找 ，这个时间花销跟浏览器要查找的作用域数有关。不要依赖全局/高层作用域变量，而是创建局部作用域变量，然后传递给函数。查找的作用域数越少，就运行更快。</p>
-<p>6.对于耗时任务，使用 Web Workers</p>
-<p>如果你有非常耗时的计算任务，如图像处理，最好使用 Web Workers 让浏览器在后台线程中运行这个任务，并且异步返回处理结果，而不是挂起线程。</p>
-<p>7.jquery中各个事件执行顺序如下：</p>
-<pre><code>1.ajaxStart(全局事件)
-2.beforeSend
-3.ajaxSend(全局事件)
-4.success
-5.ajaxSuccess(全局事件)
-6.error
-7.ajaxError (全局事件)
-8.complete
-9.ajaxComplete(全局事件)
-10.ajaxStop(全局事件)
-</code></pre><p>8.firefox中的canvas对于颜色的渲染有一定的问题，阴影的边界颜色混合会变得很深。<br>有图有真相:<br><img src="http://7xsm7w.com1.z0.glb.clouddn.com/webkit.png" alt="image"><br><img src="http://7xsm7w.com1.z0.glb.clouddn.com/geko.png" alt="image"></p>
-<p>前面一张是在chrome里面看到的效果，后面一张是在firefox里看到的效果。</p>
-<p>9.让渲染方法极大提升的3个小tips:</p>
-<p><code>background-attachment: fixed</code>改成 <code>position: fixed</code>，因为前面这玩意滚动实时计算重绘；<br>背景图片所在的元素替换为<code>::before</code>伪元素；<br>使用了CSS3 <code>will-change</code> 加速；</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/12/近期收获/" data-id="cioqxzakv0004kocss6lg1xc3" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-测试页面" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/12/测试页面/" class="article-date">
-  <time datetime="2016-05-12T11:45:49.000Z" itemprop="datePublished">2016-05-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/12/测试页面/">测试页面</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#我就试一试这个markdown</p>
-<p>##小一点的字</p>
-<p>###再小一点</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(document).ready(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">	console.log(123);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><a href="http://baidu.com" target="_blank" rel="external">点击获取更多信息</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/12/测试页面/" data-id="cioqxzail0000kocsjwj2j13f" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/12/hello-world/" class="article-date">
-  <time datetime="2016-05-12T11:03:16.342Z" itemprop="datePublished">2016-05-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/12/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/12/hello-world/" data-id="cioqxzake0002kocs3cv1ew07" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 </section>
         
