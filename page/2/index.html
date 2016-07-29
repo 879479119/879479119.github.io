@@ -57,7 +57,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -67,6 +67,76 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-近期收获" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/12/近期收获/" class="article-date">
+  <time datetime="2016-05-12T11:52:14.000Z" itemprop="datePublished">2016-05-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/12/近期收获/">page新建页面</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="最近逛博客看到的有关性能优化的东西"><a href="#最近逛博客看到的有关性能优化的东西" class="headerlink" title="最近逛博客看到的有关性能优化的东西"></a>最近逛博客看到的有关性能优化的东西</h1><blockquote>
+<p>包括两个部分，一部分是有关于CSS动画这一方面的，另一部分是关于js性能方面的</p>
+</blockquote>
+<p>1.使用 <code>transform3d</code> api 代替 <code>transform</code> api，可以强制开启 GPU 加速，提升网站动画渲染性能；</p>
+<p>2.使用 CSS3 will-change 提高页面滚动、动画等渲染性能;</p>
+<p>3.chrome对于渲染很多大尺寸图片(尤其是alpha透明度PNG24图片)方面有先天的不足，从它版本10+的时候就有开发者在官方平台报过这个Bug，如今chrome已经更新至版本30+，却依旧没有完美解决这个顽疾。</p>
+<p>通过<code>-webkit-transform:transition3d/translateZ</code>开启GPU硬件加速之后，有些时候可能会导致浏览器频繁闪烁或抖动，可以尝试以下办法解决之：<br><code>-webkit-backface-visibility:hidden;</code><br><code>-webkit-perspective:1000;</code></p>
+<p>4.不要重构对象</p>
+<p>重构对象是很昂贵的操作，遵循下面的建议来避免：</p>
+<p>不使用 delete 操作符</p>
+<pre><code>删除一个属性，用 delete 会比通过 null 赋值慢很多，在火狐和 Chrome 中，
+null 赋值会快 99%，因为它不会修改对象的结构，但是 delete 会。
+</code></pre><p>不要添加属性</p>
+<pre><code>定义对象后，不要随后给对象添加属性，而是一开始就应该定义好对象的结构模式，
+这样运行速度会快很多(火狐上快 100%，Chrome 上快 89%)。
+</code></pre><p>5.声明 &amp; 传递局部作用域变量</p>
+<p>当调用一个函数时，浏览器会进行 作用域查找 ，这个时间花销跟浏览器要查找的作用域数有关。不要依赖全局/高层作用域变量，而是创建局部作用域变量，然后传递给函数。查找的作用域数越少，就运行更快。</p>
+<p>6.对于耗时任务，使用 Web Workers</p>
+<p>如果你有非常耗时的计算任务，如图像处理，最好使用 Web Workers 让浏览器在后台线程中运行这个任务，并且异步返回处理结果，而不是挂起线程。</p>
+<p>7.jquery中各个事件执行顺序如下：</p>
+<pre><code>1.ajaxStart(全局事件)
+2.beforeSend
+3.ajaxSend(全局事件)
+4.success
+5.ajaxSuccess(全局事件)
+6.error
+7.ajaxError (全局事件)
+8.complete
+9.ajaxComplete(全局事件)
+10.ajaxStop(全局事件)
+</code></pre><p>8.firefox中的canvas对于颜色的渲染有一定的问题，阴影的边界颜色混合会变得很深。<br>有图有真相:<br><img src="http://7xsm7w.com1.z0.glb.clouddn.com/webkit.png" alt="image"><br><img src="http://7xsm7w.com1.z0.glb.clouddn.com/geko.png" alt="image"></p>
+<p>前面一张是在chrome里面看到的效果，后面一张是在firefox里看到的效果。</p>
+<p>9.让渲染方法极大提升的3个小tips:</p>
+<p><code>background-attachment: fixed</code>改成 <code>position: fixed</code>，因为前面这玩意滚动实时计算重绘；<br>背景图片所在的元素替换为<code>::before</code>伪元素；<br>使用了CSS3 <code>will-change</code> 加速；</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/12/近期收获/" data-id="cir7gc6zh0007o4cs8jr6lk7t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-测试页面" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -99,7 +169,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/12/测试页面/" data-id="cir1lo9n60003oscs5htt6dlf" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/12/测试页面/" data-id="cir7gc6ws0004o4cst65gn1jp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -144,7 +214,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/12/hello-world/" data-id="cir1lo9mh0001oscswyyx0fu5" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/05/12/hello-world/" data-id="cir7gc6ih0001o4csq1nbfitl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -173,7 +243,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
     </div>
@@ -183,9 +253,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/07/29/React-Native——如果坑，请深坑/">React Native——如果坑，请深坑</a>
+          </li>
         
           <li>
             <a href="/2016/07/25/chrome开发者工具中的HTML与CSS调试/">chrome开发者工具中的HTML与CSS调试</a>
@@ -201,10 +275,6 @@
         
           <li>
             <a href="/2016/05/27/主要关于Canvas和Node的一些笔记/">主要关于Canvas和Node的一些笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/12/近期收获/">page新建页面</a>
           </li>
         
       </ul>
