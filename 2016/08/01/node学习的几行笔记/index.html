@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>node学习的几行笔记 | 磊磊SAMA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Node和Express的一丢丢学习记录
+1.node中使用mysql数据库，在createConnection创建连接后就没有必要再使用connect方法进行手动连接了，同样的end方法也不要使用；如果使用了connect方法，node将会在第二次查询的时候抛出一个错误
+Cannot enqueue Handshake after invoking quit
+2.node中使用app.all(&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node学习的几行笔记">
+<meta property="og:url" content="http://yoursite.com/2016/08/01/node学习的几行笔记/index.html">
+<meta property="og:site_name" content="磊磊SAMA">
+<meta property="og:description" content="Node和Express的一丢丢学习记录
+1.node中使用mysql数据库，在createConnection创建连接后就没有必要再使用connect方法进行手动连接了，同样的end方法也不要使用；如果使用了connect方法，node将会在第二次查询的时候抛出一个错误
+Cannot enqueue Handshake after invoking quit
+2.node中使用app.all(&amp;">
+<meta property="og:updated_time" content="2016-08-01T06:14:06.387Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node学习的几行笔记">
+<meta name="twitter:description" content="Node和Express的一丢丢学习记录
+1.node中使用mysql数据库，在createConnection创建连接后就没有必要再使用connect方法进行手动连接了，同样的end方法也不要使用；如果使用了connect方法，node将会在第二次查询的时候抛出一个错误
+Cannot enqueue Handshake after invoking quit
+2.node中使用app.all(&amp;">
+  
+    <link rel="alternate" href="/atom.xml" title="磊磊SAMA" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">磊磊SAMA</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">why don&#39;t you get to fly in the air?</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-node学习的几行笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/01/node学习的几行笔记/" class="article-date">
+  <time datetime="2016-08-01T05:53:10.000Z" itemprop="datePublished">2016-08-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      node学习的几行笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Node和Express的一丢丢学习记录"><a href="#Node和Express的一丢丢学习记录" class="headerlink" title="Node和Express的一丢丢学习记录"></a>Node和Express的一丢丢学习记录</h3><hr>
+<p>1.node中使用mysql数据库，在<code>createConnection</code>创建连接后就没有必要再使用<code>connect</code>方法进行手动连接了，同样的<code>end</code>方法也不要使用；如果使用了<code>connect</code>方法，node将会在第二次查询的时候抛出一个错误</p>
+<pre><code>Cannot enqueue Handshake after invoking quit
+</code></pre><p>2.node中使用<code>app.all(&quot;*&quot;);</code>可以拦截任何路由活动，过后所有的请求都会被拦截，也不能将<code>app.get(&quot;/room&quot;);</code>类似的路由嵌套在里面。</p>
+<p>3.如果把index.html放在了项目的根目录下面，那么访问项目时将不会进入<code>app.get(&quot;/&quot;)</code>的路由，而是直接读取index的文件，<strong>这一点很关键！！</strong>简直是没有人性的设计。</p>
+<p>4.说了好多次了，空的对象转换为布尔值也是为真（可以理解成自身带有toString等方法）；在用mysql毁掉函数处理查询的result值时，<strong>千万不能</strong>用!result来判断未查询到结果。</p>
+<p>5.这个数字<code>2147483647</code>是一个美妙的数字，它是三十二位系统中所能表示的最大的有符号整型数字，在用node向mysql数据库中写入的日期的时候不要将时间戳以数字的形式传入存储，不然他会转变成这个值的。<em>（难过脸）</em></p>
+<p>6.node中需要用到非常多的回调函数，所以要注意好好控制代码的结构，有必要时使用一些库（sync等）；另外，回调函数的作用域都是在调用处的上下文中的，这意味着不用传入大量参数。</p>
+<p>7.千万不要将node的项目名称设置为与依赖的包重名，这里指的项目名称是package.json里面设置的项目名称，如果<strong>设置成了一样的话将会报错</strong>（项目依赖名称冲突）。</p>
+<p>8.redis是只能够存储键值对的，所以如果要存储多个属性的对象的话，需要将他转换为JSON字符串，取出来的时候一定要转换回去。</p>
+<p>9.<strong>标准JSON的键是要用双引号括起来的哦</strong>，只是平时在接受里面使用的时候，如果不包含“<code>- &amp; *</code>”等符号可以直接用不带引号或者单引号的表达。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/01/node学习的几行笔记/" data-id="cirbmp3qn000098cs3oa599jx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/07/29/React-Native——如果坑，请深坑/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">React Native——如果坑，请深坑</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/01/node学习的几行笔记/">node学习的几行笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/29/React-Native——如果坑，请深坑/">React Native——如果坑，请深坑</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/25/chrome开发者工具中的HTML与CSS调试/">chrome开发者工具中的HTML与CSS调试</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/07/Chrome冷知识/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/28/读Javascript高程之笔记/">读Javascript高程之笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 RockSAMA<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

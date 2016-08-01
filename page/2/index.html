@@ -68,6 +68,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-主要关于Canvas和Node的一些笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/27/主要关于Canvas和Node的一些笔记/" class="article-date">
+  <time datetime="2016-05-27T11:52:14.000Z" itemprop="datePublished">2016-05-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/27/主要关于Canvas和Node的一些笔记/">主要关于Canvas和Node的一些笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>9.获取鼠标移动的位置，兼容各大主流浏览器<em>（当然没有IE，他才不算主流，哼）</em></p>
+<pre><code>1 document.addEventListener(&quot;mousemove&quot;, function(e) {
+2   var movementX = e.movementX   ||
+3   e.mozMovementX||
+4   e.webkitMovementX ||
+5   0,
+6   movementY = e.movementY   ||
+7   e.mozMovementY||
+8   e.webkitMovementY ||
+9   0;
+10 
+11   // Print the mouse movement delta values
+12   console.log(&quot;movementX=&quot; + movementX, &quot;movementY=&quot; + movementY);
+13 }, false);
+</code></pre><p>IE和FF的定位有个1px的差别，实际上，IE的定位从0开始，FF的定位从1开始，FF永远会比IE大1px，需要根据实际情况处理。</p>
+<p>10.<code>currentColor</code>属性可以用于CSS中替代当前选择其中文字的颜色，可以应用到一些小ICON的使用上面，对应的做法就是将显示部分做成一个蒙版，透过蒙版可以看到背景色，这时我们设置文字的<code>hover</code>改变颜色就可以很方便的改变icon的颜色了。</p>
+<p>11.<code>background:#f00 url(background.gif) no-repeat fixed 0 0/100px 100px;</code><br>“ / ”前面的<code>0 0</code>，就是<code>background-position</code>， 后面的<code>100px 100px</code>， 就是background-size的值，这种格式下，<br>background-position的值不能省略。</p>
+<p>12.在canvas中使用socket即时通讯画图，使用越粗的线就会越卡，在线粗相同的情况下，实用的阴影越大也会更加卡，不过原因尚不清楚。</p>
+<p>13.有的智障编辑器是不会提示拼写错误的，今天早上就把<em>block</em>写成了<em>blcok</em>调试了一个小时的bug没发现问题</p>
+<p>14.在node里面进行路由操作的时候，一定不要把socket的connect事件加入到路由里面，不然会出现刷新一次多一个socket的情况。</p>
+<p>15.在node里面使用<code>res.writeHead</code>会发生报错的情况，不能够在发送出消息后设置头部，但是使用setHead不会产生这种错误，如果想要获取到cookie的话使用<code>req.headers.cookie</code>可以获取到<br>“schoolid=1;schoolName=%E9%87%8D%E5%BA%86%E9%82%AE%E7%94%B5%E5%A4%A7%E5%AD%A6; _ga=GA1.1.1329053600.1463749095; a=000”<br>这种形式的字符串，可以手动解析，也可以使用parse-cookie的中间件。并且，在set-cookie的时候如果不配置max-age的话，将使用默认的session属性；当max-age为<strong>负数或者零</strong>时，cookie将不起任何作用。</p>
+<p>16.（题外话）百度搜索的最近搜索全部存在localstorage里面的BDSUGSTORED数据，JSON格式哦。</p>
+<p>17.cookie的domain，代表了其作用域，即有效范围。</p>
+<p>一般是对应的http地址的最开始那部分的值。</p>
+<p>比如对于访问<a href="http://login.live.com//xxxx" target="_blank" rel="external">http://login.live.com//xxxx</a> 来说，cookie的domain是.live.com的话，那么就是和此网页相匹配，和此网页的Host=login.live.com相匹配，是有效的。</p>
+<p>尤其需要注意的是，cookie的domain所代表的含义。</p>
+<p>举例来说，如果一个cookie的domain是.live.com的话，那么对于去访问.users.storage.live.com</p>
+<p>或.storage.live.com类型的地址的话，是无效的，因为.live.com，其作用域，只是xxx.live.com，而并不包括xxx.users.storage.live.com或xxx.storage.live.com类型的地址。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/27/主要关于Canvas和Node的一些笔记/" data-id="cirbmp3xm000898cshkb6rj3o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-近期收获" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/05/12/近期收获/" class="article-date">
@@ -128,7 +192,7 @@ null 赋值会快 99%，因为它不会修改对象的结构，但是 delete 会
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/12/近期收获/" data-id="cir7gc6zh0007o4cs8jr6lk7t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/12/近期收获/" data-id="cirbmp3sp000798csmvy5r281" class="article-share-link">Share</a>
       
       
     </footer>
@@ -169,7 +233,7 @@ null 赋值会快 99%，因为它不会修改对象的结构，但是 delete 会
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/12/测试页面/" data-id="cir7gc6ws0004o4cst65gn1jp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/12/测试页面/" data-id="cirbmp3sg000498csp98njzdp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -214,7 +278,7 @@ null 赋值会快 99%，因为它不会修改对象的结构，但是 delete 会
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/12/hello-world/" data-id="cir7gc6ih0001o4csq1nbfitl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/12/hello-world/" data-id="cirbmp3si000598cs345hc2mg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -245,7 +309,7 @@ null 赋值会快 99%，因为它不会修改对象的结构，但是 delete 会
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
     </div>
   </div>
 
@@ -256,6 +320,10 @@ null 赋值会快 99%，因为它不会修改对象的结构，但是 delete 会
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/08/01/node学习的几行笔记/">node学习的几行笔记</a>
+          </li>
         
           <li>
             <a href="/2016/07/29/React-Native——如果坑，请深坑/">React Native——如果坑，请深坑</a>
@@ -271,10 +339,6 @@ null 赋值会快 99%，因为它不会修改对象的结构，但是 delete 会
         
           <li>
             <a href="/2016/05/28/读Javascript高程之笔记/">读Javascript高程之笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/27/主要关于Canvas和Node的一些笔记/">主要关于Canvas和Node的一些笔记</a>
           </li>
         
       </ul>
