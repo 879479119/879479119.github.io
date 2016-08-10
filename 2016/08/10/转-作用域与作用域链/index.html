@@ -3,17 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>磊磊SAMA</title>
+  <title>[转]作用域与作用域链 | 磊磊SAMA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这个人很懒，没有留下描述">
-<meta property="og:type" content="website">
-<meta property="og:title" content="磊磊SAMA">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="作用域，作用域链，域解析
+转载自   陈玉
+执行环境JavaScript执行环境，也叫作JavaScript执行上下文（我百度翻译的(＾－＾)，英文名叫做execution context）执行环境：JavaScript代码都是在执行环境中被执行的。执行环境是一个概念，一种机制，用来完成JavaScript运行时在作用域、生命周期等方面的处理，它定义了变量或函数是否有权访问其他数据，决定各自行为。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[转]作用域与作用域链">
+<meta property="og:url" content="http://yoursite.com/2016/08/10/转-作用域与作用域链/index.html">
 <meta property="og:site_name" content="磊磊SAMA">
-<meta property="og:description" content="这个人很懒，没有留下描述">
+<meta property="og:description" content="作用域，作用域链，域解析
+转载自   陈玉
+执行环境JavaScript执行环境，也叫作JavaScript执行上下文（我百度翻译的(＾－＾)，英文名叫做execution context）执行环境：JavaScript代码都是在执行环境中被执行的。执行环境是一个概念，一种机制，用来完成JavaScript运行时在作用域、生命周期等方面的处理，它定义了变量或函数是否有权访问其他数据，决定各自行为。">
+<meta property="og:updated_time" content="2016-08-10T09:51:03.650Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="磊磊SAMA">
-<meta name="twitter:description" content="这个人很懒，没有留下描述">
+<meta name="twitter:title" content="[转]作用域与作用域链">
+<meta name="twitter:description" content="作用域，作用域链，域解析
+转载自   陈玉
+执行环境JavaScript执行环境，也叫作JavaScript执行上下文（我百度翻译的(＾－＾)，英文名叫做execution context）执行环境：JavaScript代码都是在执行环境中被执行的。执行环境是一个概念，一种机制，用来完成JavaScript运行时在作用域、生命周期等方面的处理，它定义了变量或函数是否有权访问其他数据，决定各自行为。">
   
     <link rel="alternate" href="/atom.xml" title="磊磊SAMA" type="application/atom+xml">
   
@@ -66,9 +73,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-转-作用域与作用域链" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-转-作用域与作用域链" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/08/10/转-作用域与作用域链/" class="article-date">
   <time datetime="2016-08-10T09:44:43.000Z" itemprop="datePublished">2016-08-10</time>
@@ -81,8 +86,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/10/转-作用域与作用域链/">[转]作用域与作用域链</a>
+    <h1 class="article-title" itemprop="name">
+      [转]作用域与作用域链
     </h1>
   
 
@@ -174,248 +179,20 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-对于redux的学习收集的资料" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/10/对于redux的学习收集的资料/" class="article-date">
-  <time datetime="2016-08-10T08:26:46.000Z" itemprop="datePublished">2016-08-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/10/对于redux的学习收集的资料/">对于redux的学习收集的资料</a>
-    </h1>
+    <a href="/2016/08/10/对于redux的学习收集的资料/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">对于redux的学习收集的资料</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="学习Redux框架是艰辛的"><a href="#学习Redux框架是艰辛的" class="headerlink" title="学习Redux框架是艰辛的"></a>学习Redux框架是艰辛的</h2><p>接触React已近一段时间了，但是最近才开始用Redux重构项目，由于是别人帮忙重构的，所以看到刚刚重构的代码我是一脸懵逼的，根本不知道在写些什么。慢慢的多看了些文档和博客才得以了解项目的结构，过程中收集的一些资料在这里也就分享出来：</p>
-<h3 id="基本手册"><a href="#基本手册" class="headerlink" title="基本手册"></a>基本手册</h3><hr>
-<ul>
-<li><a href="http://cn.redux.js.org/" target="_blank" rel="external">Redux中文手册</a></li>
-<li><a href="http://redux.js.org/" target="_blank" rel="external">英文原版手册</a></li>
-</ul>
-<h3 id="简单的系列教程"><a href="#简单的系列教程" class="headerlink" title="简单的系列教程"></a>简单的系列教程</h3><hr>
-<ul>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5145073.html" target="_blank" rel="external">react+redux教程（一）connect、applyMiddleware、thunk、webpackHotMiddleware</a></p>
-</li>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5147445.html" target="_blank" rel="external">react+redux教程（二）redux的单一状态树完全替代了react的状态机？</a></p>
-</li>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5149006.html" target="_blank" rel="external">react+redux教程（三）reduce()、filter()、map()、some()、every()、…展开属性</a></p>
-</li>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5161003.html" target="_blank" rel="external">react+redux教程（四）undo、devtools、router</a></p>
-</li>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5170835.html" target="_blank" rel="external">react+redux教程（五）异步、单一state树结构、componentWillReceiveProps</a></p>
-</li>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5174861.html" target="_blank" rel="external">react+redux教程（六）redux服务端渲染流程</a></p>
-</li>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5177852.html" target="_blank" rel="external">react+redux教程（七）自定义redux中间件</a></p>
-</li>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5180097.html" target="_blank" rel="external">react+redux教程（八）连接数据库的redux程序</a></p>
-</li>
-</ul>
-<h3 id="一点也不容易搞懂"><a href="#一点也不容易搞懂" class="headerlink" title="一点也不容易搞懂"></a>一点也不容易搞懂</h3><hr>
-<ul>
-<li><a href="http://www.tuicool.com/articles/u6JRjyz" target="_blank" rel="external">深入浅出Redux中间件</a></li>
-<li><a href="http://www.zhangxinxu.com/wordpress/2013/02/js-currying/" target="_blank" rel="external">JS中的柯里化</a></li>
-</ul>
-<h3 id="项目实例"><a href="#项目实例" class="headerlink" title="项目实例"></a>项目实例</h3><hr>
-<p>其实我也没有认真去找，但是跟着基本教程里面的做就相当于是有了一个框架了，继续在上面进行开发足矣，这里只附上一个自己的项目。</p>
-<ul>
-<li><a href="https://github.com/879479119/Bilibili-React-Native" target="_blank" rel="external">Bilibili-React-Native</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/对于redux的学习收集的资料/" data-id="ciropmutm0006yccs85512315" class="article-share-link">Delen</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
 
-
-  
-    <article id="post-node学习的几行笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/01/node学习的几行笔记/" class="article-date">
-  <time datetime="2016-08-01T05:53:10.000Z" itemprop="datePublished">2016-08-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/01/node学习的几行笔记/">node学习的几行笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Node和Express的一丢丢学习记录"><a href="#Node和Express的一丢丢学习记录" class="headerlink" title="Node和Express的一丢丢学习记录"></a>Node和Express的一丢丢学习记录</h3><hr>
-<p>1.node中使用mysql数据库，在<code>createConnection</code>创建连接后就没有必要再使用<code>connect</code>方法进行手动连接了，同样的<code>end</code>方法也不要使用；如果使用了<code>connect</code>方法，node将会在第二次查询的时候抛出一个错误</p>
-<pre><code>Cannot enqueue Handshake after invoking quit
-</code></pre><p>2.node中使用<code>app.all(&quot;*&quot;);</code>可以拦截任何路由活动，过后所有的请求都会被拦截，也不能将<code>app.get(&quot;/room&quot;);</code>类似的路由嵌套在里面。</p>
-<p>3.如果把index.html放在了项目的根目录下面，那么访问项目时将不会进入<code>app.get(&quot;/&quot;)</code>的路由，而是直接读取index的文件，<strong>这一点很关键！！</strong>简直是没有人性的设计。</p>
-<p>4.说了好多次了，空的对象转换为布尔值也是为真（可以理解成自身带有toString等方法）；在用mysql毁掉函数处理查询的result值时，<strong>千万不能</strong>用!result来判断未查询到结果。</p>
-<p>5.这个数字<code>2147483647</code>是一个美妙的数字，它是三十二位系统中所能表示的最大的有符号整型数字，在用node向mysql数据库中写入的日期的时候不要将时间戳以数字的形式传入存储，不然他会转变成这个值的。<em>（难过脸）</em></p>
-<p>6.node中需要用到非常多的回调函数，所以要注意好好控制代码的结构，有必要时使用一些库（sync等）；另外，回调函数的作用域都是在调用处的上下文中的，这意味着不用传入大量参数。</p>
-<p>7.千万不要将node的项目名称设置为与依赖的包重名，这里指的项目名称是package.json里面设置的项目名称，如果<strong>设置成了一样的话将会报错</strong>（项目依赖名称冲突）。</p>
-<p>8.redis是只能够存储键值对的，所以如果要存储多个属性的对象的话，需要将他转换为JSON字符串，取出来的时候一定要转换回去。</p>
-<p>9.<strong>标准JSON的键是要用双引号括起来的哦</strong>，只是平时在接受里面使用的时候，如果不包含“<code>- &amp; *</code>”等符号可以直接用不带引号或者单引号的表达。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/01/node学习的几行笔记/" data-id="ciropmuti0004yccs68hfyex7" class="article-share-link">Delen</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-React-Native——如果坑，请深坑" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/29/React-Native——如果坑，请深坑/" class="article-date">
-  <time datetime="2016-07-29T07:50:36.000Z" itemprop="datePublished">2016-07-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/29/React-Native——如果坑，请深坑/">React Native——如果坑，请深坑</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="2016年7月ReactNative跳坑记录"><a href="#2016年7月ReactNative跳坑记录" class="headerlink" title="2016年7月ReactNative跳坑记录"></a>2016年7月ReactNative跳坑记录</h2><hr>
-<p>1.添加组件属性，有一个地方需要注意，就是<code>class</code>属性需要写成 <code>className</code> ，<code>for</code> 属性需要写成 <code>htmlFor</code> ，这是因为 class 和 for 是 JavaScript 的保留字。</p>
-<p>2.在genymotion上进行模拟的时候，<strong>一定要关闭电脑的防火墙</strong>，并且要把手机的<strong>wifi连上</strong> <em>（好像5.0以上的版本不会自动连接wifi）</em>，将模拟器的ip和端口设置为可访问本机的ip（<code>10.0.3.2:8081</code>），如果是在手机上的话，也是可以打开网页尝试是否可以访问，可以访问后再将ip添加进genymotion的设置里面。</p>
-<p>3.React Native的打包器会首先寻找<code>File.&lt;platform&gt;.js</code>文件，然后再去寻找 <code>File.js</code> 。这就允许我们将Android平台的代码放置到 <code>File.android.js</code> , iOS 的放入到 <code>File.ios.js</code> , 以及Web平台的代码放入到 <code>File.js</code>, 而不需要改变导入的声明 ./File。</p>
-<p>4.在ES6中，变量的解构赋值用途很多,交换变量的值可以用这个奇妙的方法[x, y] = [y, x]。</p>
-<p>5.当你Image加载一个网络图片时，如果你不给该Image设置<code>width</code>和<code>height</code>，那你将什么都看不到。这还不算，当你使用ListView时如果该组件同时存在一个兄弟元素，那么此时ListView必须设置<code>height</code>，否则你会发现它不再响应用户的滚动操作。。。这个地方所说的<code>width</code>和<code>height</code>是指的在style属性中设置的值，如果<strong>直接设置height属性</strong>的话是不会起作用的。</p>
-<p>6.使用fetch时，当你试图提交附件表单数据的时候，请一定要使用FormData对象将数据包裹</p>
-<p>如果你只是普通的json提交，就按照官方例子来做：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fetch(API_LOGIN_URL, &#123;</span><br><span class="line">    method: &apos;POST&apos;,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &apos;Accept&apos;: &apos;application/json&apos;,</span><br><span class="line">      &apos;Content-Type&apos;: &apos;application/json&apos;,</span><br><span class="line">    &#125;,</span><br><span class="line">    body: JSON.stringify(&#123;</span><br><span class="line">      account: this.state.account,</span><br><span class="line">      password: this.state.password,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure></p>
-<p>7.FB提供了Dimensions组件可以用来获取屏幕的当前尺寸：<br>var deviceHeight = Dimensions.get(‘window’).height;<br>var deviceWidth = Dimensions.get(‘window’).width;</p>
-<p>8.当你打算在某个控件上套用设置好的某个样式，但需要单独为其设置一个额外特殊值时，你可以这样：<br><code>&lt;View style={[styles.demo, {backgroundColor: &quot;blue&quot;}]}&gt;&lt;/ View&gt;</code></p>
-<p>9.也就是如果<code>Text</code>元素在<code>Text</code>里边，可以考虑为inline元素， 如果单独在View里边，那就是Block。 </p>
-<p>10.我把View设置了<code>justifyContent: &#39;center&#39;</code>,<code>alignItems: &#39;center&#39;</code>的样式，并在里面放上了一个ViewPagerAndroid，这个时候如果不给他设置固定的宽度或者使用padding撑开他的话是看不见的，大概是因为被View的style设置压成了类似inline的属性。</p>
-<p>11.只有View组件在设置<code>borderRadius</code>属性过后，才会将自身的border一齐转变成圆角，<strong>其他元素比如Image和Touchable类的都不会有任何反应</strong>，边角是方的。</p>
-<p>12.如果突然出现了，不显示图片的情况，可以给他加一个边框，这样可以确定是没有找到资源还是布局错误，我非常意外的发现只需要设置borderWidth为0就可以让图片显示出来。<em>（改：比较大的图片有时候都不会显示出来，这就很尴尬了）</em></p>
-<p>13.在设置react-native-swiper的点的样式的时候，不能传入函数返回值，需要直接传入一个Element对象，我不知道是哪里出了错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Dot extends Component&#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;View style=&#123;&#123;</span><br><span class="line">                backgroundColor: &apos;rgba(0,0,0,.2)&apos;,</span><br><span class="line">                width: 2,</span><br><span class="line">                height: 2,</span><br><span class="line">                borderRadius: 10,</span><br><span class="line">                marginLeft: 3,</span><br><span class="line">                marginRight: 3,</span><br><span class="line">                marginTop: 3,</span><br><span class="line">                marginBottom: 3</span><br><span class="line">            &#125;&#125;/&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如果我传入Dot.render()系统会报错，提示我是一个空元素，但是<strong>直接传入View</strong>就可以成功。</p>
-<p>14.RN中元素默认的定位方式是 relative ，并且只有relative 和 absolute 两种定位方式。<strong>如果为组件加上 position:absolute ，它将会以inline的方式渲染在页面上</strong>。并且脱离正常文档流。也就是视觉上会<strong>被后面的组件覆盖</strong>，但不能通过zIndex方式调整。嵌套的Text不可用。 </p>
-<p>15.在给控件写style属性的时候，尽量用一个View包起来，因为有很多控件的style样式无法应用，浪费调试时间。</p>
-<p>16.在调试代码的时候，要时刻注意this的指向，比如在下面的例子中，console.log中的this就指向了Drawer，变成了调用他的this了,<strong>renderNavigationView`有毒，他会调用传入的函数方法，并且把里面的this指针强行指向自己。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class main extends Component&#123;</span><br><span class="line">    navigationView()&#123;</span><br><span class="line">        console.log(this);</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;DrawerLayoutAndroid</span><br><span class="line">            	renderNavigationView=&#123;this.navigationView&#125;</span><br><span class="line">            &gt;</span><br><span class="line">  				.............</span><br><span class="line">            &lt;/DrawerLayoutAndroid&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>17.如果将文字放在图片下方，但是只设置了图片的宽度，可能会导致文字不会紧贴图片下方的问题，如下就会出现此种问题，这个时候设置上height就行了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;&#123;justifyContent:&quot;center&quot;,alignItems:&quot;center&quot;&#125;&#125;&gt;</span><br><span class="line">    &lt;Image source=&#123;require(&apos;&apos;)&#125; style=&#123;&#123;width:120&#125;&#125; resizeMode=&quot;contain&quot;/&gt;</span><br><span class="line">    &lt;Text&gt;没有找到你的缓存哟&lt;/Text&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure></p>
-<p>18.<code>hairlineWidth:CallExpression</code>用来定义当前平台<strong>最细的宽度</strong>。该属性用来设置边框或者两个组件之间的分割线。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    borderBottomColor: &apos;#bbb&apos;,</span><br><span class="line">    borderBottomWidth: StyleSheet.hairlineWidth</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>会根据当前平台信息，自动转换成一根很细的线。</p>
-<p>19.推库上这篇文章<a href="http://www.tuicool.com/articles/IreaYfv" target="_blank" rel="external">《React Native 触摸事件处理详解》</a> 关于手势处理的，非常有用！！！！！！！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/29/React-Native——如果坑，请深坑/" data-id="ciropmut60001yccs9vksnlb0" class="article-share-link">Delen</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-chrome开发者工具中的HTML与CSS调试" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/25/chrome开发者工具中的HTML与CSS调试/" class="article-date">
-  <time datetime="2016-07-25T03:06:45.000Z" itemprop="datePublished">2016-07-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/25/chrome开发者工具中的HTML与CSS调试/">chrome开发者工具中的HTML与CSS调试</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="开发者工具"><a href="#开发者工具" class="headerlink" title="开发者工具"></a>开发者工具</h2><hr>
-<p>在日常的开发过程中，我们可能需要不断的调试我们的代码，这个时候，如果一直在编辑器和网页中进行切换的话，会极大的降低我们的效率，所以我们要学会使用Chrome的开发者工具来进行调试。(图看不清楚的就拖出来看)</p>
-<blockquote>
-<p>通过点击网页上的空白部分调出菜单，选择检查进入工具或者使用其他快捷键<br>下图就是默认的开发者工具（所在位置可以点击右上方的三个点进行设置）</p>
-</blockquote>
-<p><img src="http://7xsm7w.com1.z0.glb.clouddn.com/afaf.png" alt="图片无法显示请联系管理员"></p>
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在1的中，右边按钮的作用是进入<strong>响应式设计模式</strong>，我们可以在这里对不同分辨率的机器进行模拟，这个时候显示内容的部分会变得很小，我们可以在上方输入需要的分辨率数据，或者是直接点击横条上的默认设置进行设计。</p>
-<p><img src="http://7xsm7w.com1.z0.glb.clouddn.com/pp7.png" alt="enter image description here"></p>
-<p>在调试HTML和CSS的过程中我们基本只需要使用第一个Element的窗口，后面的几个Tab我们以后学习JS和调试性能等的时候会再用到。</p>
-<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><p>默认显示的视图中，左边一部分是我们的HTML文档结构，我们可以点击小箭头打开节点或收缩节点，当鼠标知道某一个元素时，在网页中会将对应的部分内容进行浅蓝色背景的高亮显示（<code>padding</code>，<code>margin</code>等是不一样的颜色），上图就是在我鼠标指到3位置时2显示的高亮效果。</p>
-<p>与此同时，当我们需要在网页中找某一个元素，但是并不想在树中一层一层的找的时候，可以使用1左边的按钮或者使用<code>Ctrl</code>+<code>Shift</code>+<code>C</code>的快捷键快速的在网页中选择我们需要的节点，当点击一个高亮元素过后，会在文档中展开节点并获取焦点。</p>
-<p>如果我们想要编辑某一个节点的内容的话，我们可以点击右键选择，<code>Edit As HTML</code>或者直接双击，其中的节点都会被当成普通的文本编辑，编辑完成后当作html解析。</p>
-<p>在最下方的4是我们此时获取焦点的节点的层级结构，我们可以点击其中任意一个节点，此时选中的焦点便会跳转（所谓选中的焦点，可以理解成我们在右边显示的属性）</p>
-<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><h4 id="头部"><a href="#头部" class="headerlink" title="头部"></a>头部</h4><p>在5这一行中，我们暂时只需要使用前面两个，第一个就是我们默认选中显示的style，当这个选项卡启动时，我们下方将显示选中节点的CSS属性，当然，这里的CSS属性都是设置值。对应的，右边的computed选项卡下就是我们每个元素css属性经过计算过后的具体值，比如我将父元素的宽度设置为<code>1000px</code>，子元素设置<code>width:50%</code>，这个时候，我们经过计算的宽度就是<code>500px</code>。</p>
-<p>在6的位置<br><strong>1.</strong>:hover按钮可以选择节点的状态，<code>:hover</code>，<code>active</code>等等，所以我们要观察hover状态的时候就可以解放自己的双手了，将此处的状态设置为hover的话，元素就会一直保持状态，其他的状态也是一样的。<br><strong>2.</strong>第二个是进行动画调试的，我们展示不会用到<br>旁边的.cls可以用于给节点添加一个class，进行添加过后的class也会添加到DOM的class属性当中。<br><strong>3.</strong>最右边的加号可以依据当前节点的标签和class，id等添加一个样式，注意这个样式是添加到一个叫做inspector-stylesheet的样式表中的。</p>
-<h4 id="主体"><a href="#主体" class="headerlink" title="主体"></a>主体</h4><p>在7，8这一块是我们调试的重头部分，就是我们节点的css样式，从上到下优先级依次降低，第一个element.style样式就是我们在文档中设置的css，过后是我们添加的inspector-stylesheet样式，在之后的就是我们根据引用和属性覆盖的一层层css样式了，在这些样式里面，被划了横线的就是被注释掉，显示为浅灰色的就是不起作用（存在优先级更高的）的css属性，所以我们在自己写的css中注释掉的一些代码也会显示出来。</p>
-<p>在7中，右边显示的是这个样式的来源文件和行数，我们可以通过点击大括号内的属性对他们进行编辑，也可以点击一个属性后面的空白处选择新建一行书写新的属性，在开发工作中，我们需要进行微调的时候，这样做可以极大的提高我们的工作效率。</p>
-<p>在8中，左上角显示了一个<code>inherit from</code>，这就是我们从祖辈元素继承的属性，在这里更改属性的话，理所应当的也会改变祖先元素的样式。</p>
-<p><img src="http://7xsm7w.com1.z0.glb.clouddn.com/giligili.gif" alt="好好学习"></p>
-<p>好好学习，天天向上，第二期调试JS的出来了会在这里加个链接的</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/25/chrome开发者工具中的HTML与CSS调试/" data-id="ciropmuta0002yccshb8uqgov" class="article-share-link">Delen</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
-  </nav>
 </section>
         
           <aside id="sidebar">
