@@ -57,7 +57,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -67,6 +67,59 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-进行项目开发时做的一些小笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/17/进行项目开发时做的一些小笔记/" class="article-date">
+  <time datetime="2016-08-17T15:47:29.000Z" itemprop="datePublished">2016-08-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/17/进行项目开发时做的一些小笔记/">进行项目开发时做的一些小笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="校园说-Campussay-项目中遇到的问题"><a href="#校园说-Campussay-项目中遇到的问题" class="headerlink" title="校园说(Campussay)项目中遇到的问题"></a>校园说(Campussay)项目中遇到的问题</h3><p>1.<code>script</code>的<code>onload</code>事件是在<code>script</code>引入的内容执行完成后再触发的。</p>
+<p>2.如果一个变量在函数里面使用了两次以上的话，最好将他转变为<strong>局部变量</strong>，这样可以更快的读取到，<strong>提高性能</strong>。</p>
+<p>3.chrome有一些非常牛逼的特性，比如说光标在一个连接上放一段时间后台会预处理连接。</p>
+<p>4.<code>SSE</code>是单向的，由服务器向客户端推送消息的一个东西，而且只能推送文本，不过在传输过程中可以动态使用<code>gzip</code>压缩，并且不用做过多的配置，比<code>websocket</code>轻量很多。</p>
+<p>5.<code>window.onbeforeunload</code>事件会在刷新窗口，关闭窗口之前进行，如果在回调函数中return一个非空值的话，则这个值将<strong>转化为字符串</strong>显示在框中询问用户是否需要关闭当前窗口。</p>
+<p>6.<code>data</code>属性无法通过大写获取到，比如设置属性<code>offSet</code>，如果使用jQuery的话只能用<code>$().data(&quot;off-set&quot;)</code>才能得到值，并且值得注意的是，jquery里面有时候通过<code>data</code>方法获取到的是第一次调用data方法时的值；<strong>最好还是使用<code>attr</code>获取；</strong></p>
+<p>7.jquery里面的<code>on</code>方法如果执行多次的话，他的回调函数也会执行多次，如果要想解决这个问题可以先<code>off</code>了再<code>on</code>；</p>
+<h3 id="React-Native中遇到的问题"><a href="#React-Native中遇到的问题" class="headerlink" title="React-Native中遇到的问题"></a>React-Native中遇到的问题</h3><p>20.尝试了很多方法，最后才发现<code>react-native</code>的<code>scrollview</code>中使用的<code>onScroll</code>回调方法里面有<code>evt</code>的回调参数，回调参数里面有一个值<strong>藏得很深</strong>，就是<code>evt.nativeEvent.contentOffset.y</code>，这个值可以拿给我们看当前<code>scrollview</code>是否滚到了顶部或者是底部。<em>（之前是不是傻，对着返回的对象看了半天都没有找到这个属性）</em></p>
+<p>21.关于<code>React</code>中的通信方法，一般来说，使用<code>props</code>是效率最高的，不过这是仅限于从<strong>父级元素传参数给子级元素</strong>，如果要想<strong>子级元素传值给父级元素</strong>的话就需要父元素传递一个回调函数给子元素执行。在一些<strong>距离较远的并且信息传输速度要求不高的通信</strong>中，可以使用<code>RCTDeviceEventEmitter</code>这个类进行事件类型的通信</p>
+<p>22.不要指望使用特<code>textInput</code>的属性来获取输入框的值，那玩意儿只能用来强制设定文本框的<code>value</code>，你只能通过<code>change</code>事件把其中的值存起来，真是太<strong>IMBA</strong>了！</p>
+<p>23.在使用Reducer的时候千万不要改变原先的<code>state</code>，比如<code>pop</code>，<code>push</code>这种方法都不要用，用了没有效果；他会自己比较你的<code>state</code>有没有改变，刷新<strong>判断成功之后才会刷新</strong>；</p>
+<p>24.在ES6中，class就相当于是JAVA中的Class了，他的静态方法要用<code>static</code>关键字标示，并且不能使用箭头函数的形式，且调用此函数的时候不是使用<code>this</code>，而是使用类名。</p>
+<p>25.那天看到说在ES6中没有静态变量，<em>但是我试验出来是有的，不知道怎么回事</em>；</p>
+<p>26.<code>class</code>里面如果想要用属性的方法写函数，并且能够通过<code>this</code>调用的话，必须要通过在<code>constructor</code>中进行<code>bind</code>，更简单的方法就是直接使用<em>箭头函数</em>了，箭头函数会将this指针绑定在他定义的地方；</p>
+<p>27.今天看到<strong>0.31版本</strong>更新里写的<strong>zIndex属性可以生效</strong>了，大家就欢呼把；</p>
+<p>28.<code>Fetch</code> 请求默认是<strong>不带 cookie </strong>的，需要设置<code>fetch(url, {credentials: &#39;include&#39;})</code></p>
+<p>29.服务器返回 <code>400，500</code>错误码时并不会<code>reject</code>，只有网络错误这些导致请求不能完成时，<code>fetch</code>才会被 <code>reject</code>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/17/进行项目开发时做的一些小笔记/" data-id="cirz30zlt0007yccs8zpejo6o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-转-作用域与作用域链" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -168,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/转-作用域与作用域链/" data-id="ciropmutz0009yccsrc9t55r3" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/08/10/转-作用域与作用域链/" data-id="cirz30zm30009yccshrzodvd3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -239,7 +292,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/对于redux的学习收集的资料/" data-id="ciropmutm0006yccs85512315" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/08/10/对于redux的学习收集的资料/" data-id="cirz30zlx0008yccs8vlbas4k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -286,7 +339,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/01/node学习的几行笔记/" data-id="ciropmuti0004yccs68hfyex7" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/08/01/node学习的几行笔记/" data-id="cirz30zlk0004yccsa4817iwm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -345,63 +398,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/29/React-Native——如果坑，请深坑/" data-id="ciropmut60001yccs9vksnlb0" class="article-share-link">Delen</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-chrome开发者工具中的HTML与CSS调试" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/25/chrome开发者工具中的HTML与CSS调试/" class="article-date">
-  <time datetime="2016-07-25T03:06:45.000Z" itemprop="datePublished">2016-07-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/25/chrome开发者工具中的HTML与CSS调试/">chrome开发者工具中的HTML与CSS调试</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="开发者工具"><a href="#开发者工具" class="headerlink" title="开发者工具"></a>开发者工具</h2><hr>
-<p>在日常的开发过程中，我们可能需要不断的调试我们的代码，这个时候，如果一直在编辑器和网页中进行切换的话，会极大的降低我们的效率，所以我们要学会使用Chrome的开发者工具来进行调试。(图看不清楚的就拖出来看)</p>
-<blockquote>
-<p>通过点击网页上的空白部分调出菜单，选择检查进入工具或者使用其他快捷键<br>下图就是默认的开发者工具（所在位置可以点击右上方的三个点进行设置）</p>
-</blockquote>
-<p><img src="http://7xsm7w.com1.z0.glb.clouddn.com/afaf.png" alt="图片无法显示请联系管理员"></p>
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>在1的中，右边按钮的作用是进入<strong>响应式设计模式</strong>，我们可以在这里对不同分辨率的机器进行模拟，这个时候显示内容的部分会变得很小，我们可以在上方输入需要的分辨率数据，或者是直接点击横条上的默认设置进行设计。</p>
-<p><img src="http://7xsm7w.com1.z0.glb.clouddn.com/pp7.png" alt="enter image description here"></p>
-<p>在调试HTML和CSS的过程中我们基本只需要使用第一个Element的窗口，后面的几个Tab我们以后学习JS和调试性能等的时候会再用到。</p>
-<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><p>默认显示的视图中，左边一部分是我们的HTML文档结构，我们可以点击小箭头打开节点或收缩节点，当鼠标知道某一个元素时，在网页中会将对应的部分内容进行浅蓝色背景的高亮显示（<code>padding</code>，<code>margin</code>等是不一样的颜色），上图就是在我鼠标指到3位置时2显示的高亮效果。</p>
-<p>与此同时，当我们需要在网页中找某一个元素，但是并不想在树中一层一层的找的时候，可以使用1左边的按钮或者使用<code>Ctrl</code>+<code>Shift</code>+<code>C</code>的快捷键快速的在网页中选择我们需要的节点，当点击一个高亮元素过后，会在文档中展开节点并获取焦点。</p>
-<p>如果我们想要编辑某一个节点的内容的话，我们可以点击右键选择，<code>Edit As HTML</code>或者直接双击，其中的节点都会被当成普通的文本编辑，编辑完成后当作html解析。</p>
-<p>在最下方的4是我们此时获取焦点的节点的层级结构，我们可以点击其中任意一个节点，此时选中的焦点便会跳转（所谓选中的焦点，可以理解成我们在右边显示的属性）</p>
-<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><h4 id="头部"><a href="#头部" class="headerlink" title="头部"></a>头部</h4><p>在5这一行中，我们暂时只需要使用前面两个，第一个就是我们默认选中显示的style，当这个选项卡启动时，我们下方将显示选中节点的CSS属性，当然，这里的CSS属性都是设置值。对应的，右边的computed选项卡下就是我们每个元素css属性经过计算过后的具体值，比如我将父元素的宽度设置为<code>1000px</code>，子元素设置<code>width:50%</code>，这个时候，我们经过计算的宽度就是<code>500px</code>。</p>
-<p>在6的位置<br><strong>1.</strong>:hover按钮可以选择节点的状态，<code>:hover</code>，<code>active</code>等等，所以我们要观察hover状态的时候就可以解放自己的双手了，将此处的状态设置为hover的话，元素就会一直保持状态，其他的状态也是一样的。<br><strong>2.</strong>第二个是进行动画调试的，我们展示不会用到<br>旁边的.cls可以用于给节点添加一个class，进行添加过后的class也会添加到DOM的class属性当中。<br><strong>3.</strong>最右边的加号可以依据当前节点的标签和class，id等添加一个样式，注意这个样式是添加到一个叫做inspector-stylesheet的样式表中的。</p>
-<h4 id="主体"><a href="#主体" class="headerlink" title="主体"></a>主体</h4><p>在7，8这一块是我们调试的重头部分，就是我们节点的css样式，从上到下优先级依次降低，第一个element.style样式就是我们在文档中设置的css，过后是我们添加的inspector-stylesheet样式，在之后的就是我们根据引用和属性覆盖的一层层css样式了，在这些样式里面，被划了横线的就是被注释掉，显示为浅灰色的就是不起作用（存在优先级更高的）的css属性，所以我们在自己写的css中注释掉的一些代码也会显示出来。</p>
-<p>在7中，右边显示的是这个样式的来源文件和行数，我们可以通过点击大括号内的属性对他们进行编辑，也可以点击一个属性后面的空白处选择新建一行书写新的属性，在开发工作中，我们需要进行微调的时候，这样做可以极大的提高我们的工作效率。</p>
-<p>在8中，左上角显示了一个<code>inherit from</code>，这就是我们从祖辈元素继承的属性，在这里更改属性的话，理所应当的也会改变祖先元素的样式。</p>
-<p><img src="http://7xsm7w.com1.z0.glb.clouddn.com/giligili.gif" alt="好好学习"></p>
-<p>好好学习，天天向上，第二期调试JS的出来了会在这里加个链接的</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/25/chrome开发者工具中的HTML与CSS调试/" data-id="ciropmuta0002yccshb8uqgov" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2016/07/29/React-Native——如果坑，请深坑/" data-id="cirz30zkb0001yccs5g9yrwxb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -430,7 +427,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
     </div>
@@ -440,9 +437,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/08/17/进行项目开发时做的一些小笔记/">进行项目开发时做的一些小笔记</a>
+          </li>
         
           <li>
             <a href="/2016/08/10/转-作用域与作用域链/">[转]作用域与作用域链</a>
@@ -458,10 +459,6 @@
         
           <li>
             <a href="/2016/07/29/React-Native——如果坑，请深坑/">React Native——如果坑，请深坑</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/25/chrome开发者工具中的HTML与CSS调试/">chrome开发者工具中的HTML与CSS调试</a>
           </li>
         
       </ul>
