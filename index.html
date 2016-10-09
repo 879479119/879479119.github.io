@@ -68,6 +68,66 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-node文档阅读笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/09/node文档阅读笔记/" class="article-date">
+  <time datetime="2016-10-09T13:58:03.000Z" itemprop="datePublished">2016-10-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/09/node文档阅读笔记/">node文档阅读笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="node-amp-server"><a href="#node-amp-server" class="headerlink" title="node &amp; server:"></a>node &amp; server:</h2><p><strong>1</strong>.<code>module</code>还有些其他属性，简单说下吧。<br>    <code>module.id</code> 模块id，往往是模块路径<br>    <code>module.children</code> 子模块<br>    <code>module.filename</code> 模块路径<br>    <code>module.loaded</code> 是否加载完毕<br>    <code>module.parent</code> 父模块<br>    <code>module.paths</code> 各级 <code>node_modules</code> 目录路径</p>
+<p><strong>2</strong>.<code>require.resolve</code> 不会加载执行，只会返回模块的绝对路径。<br><code>require.cache</code> 缓存所有已经加载的模块，如果你要更新模块就要删除这里的缓存。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = require(&apos;./a&apos;);</span><br><span class="line">var p = require.resolve(&apos;./a&apos;); // 得到模块路径</span><br><span class="line">delete require.cache[p]; // 删除模块缓存</span><br></pre></td></tr></table></figure>
+<p><strong>3</strong>.<code>require.extensions</code> 自定义模块后缀,可以手动设置模块的加载，比如说直接在测试的时候拒绝加载某些类型的文件只需：<br>运行如下语句时，css文件便不会读取(已过时)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require.extensions[&apos;.css&apos;] = function noop() &#123;</span><br><span class="line">  return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>4</strong>.<code>process</code>模块用来与当前进程互动，可以通过全局变量<code>process</code>访问，不必使用<code>require</code>命令加载。它是一个<code>EventEmitter</code>对象的实例</p>
+<p><strong>5</strong>.<code>console</code> 函数默认情况下都是异步执行的，除非要将信息输出到文件中。硬盘已经很快了，操作系统通常使用高速缓存进行读写，但仍然不可避免发生进程阻塞的情况。</p>
+<p><strong>6</strong>.最简单的调用栈调试可以直接使用<code>console.trace()</code>   打印出调用处的调试信息</p>
+<p><strong>7</strong>.内存的指向和克隆（数组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const arr = new Uint16Array(2);</span><br><span class="line">arr[0] = 5000;</span><br><span class="line">arr[1] = 4000;</span><br><span class="line"></span><br><span class="line">const buf1 = Buffer.from(arr); // copies the buffer</span><br><span class="line">const buf2 = Buffer.from(arr.buffer); // shares the memory with arr;</span><br></pre></td></tr></table></figure></p>
+<p><strong>8</strong>.<code>for...in</code>是ES5里的遍历键    <code>for...of</code>是ES6的遍历值</p>
+<p><strong>9</strong>.<code>Buffer.byteLength(string[, encoding])</code>返回字符串的实际字节长度。与 <code>String.prototype.length</code> 不同的是，该方法返回数值表示字符串占多少字节，而 <code>String.prototype.length</code> 返回的数值表示字符串有多少个字符。通过这个我们可以计算出一个字符串里有多少汉字符或其他字符（只包含一种其他字符</p>
+<p><strong>10</strong>.<code>child_process.spawn()</code> 方法用于异步创建子进程，不会阻塞 Node.js 的事件循环机制。<br><code>child_process.spawnSync()</code> 方法与上一个方法提供了相同的功能，不同之处在于它是同步执行的，执行时会阻塞事件循环机制，知道子进程结束任务并退出。</p>
+<p><strong>11</strong>.<strong>疑惑？？？？？？每新创建一个<code>EventEmmiter</code>的实例接相当于新开了一个消息队列吗？？？？？</strong></p>
+<p><strong>12</strong>.当 <code>EventEmitter</code> 的实例出现错误时，就会触发 <code>error</code> 事件，这在 Node.js 中被视为一个特殊事件。<br>为了避免 Node.js 的进程崩溃，开发者可以使用 <code>domain</code> 模块（不过该模块已被抛弃）或者注册一个 <code>process.on(&#39;uncaughtException&#39;)</code> 来解决:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">process.on(&apos;uncaughtException&apos;, (err) =&gt; &#123;</span><br><span class="line">  console.log(&apos;whoops! there was an error&apos;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>13</strong>.默认情况下，任何事件可以注册 10 个监听器。<code>EventEmitter</code> 的实例可以通过 <code>emitter.setMaxListeners(n)</code> 方法修改这一限制值。如果要为所有的 <code>EventEmitte</code> 实例修改该属性，需要使用 <code>EventEmitter.defaultMaxListeners</code> 属性。</p>
+<p><strong>14</strong>.如果未对 <code>response</code> 事件设置处理函数，则响应信息就会被忽略。不过，如果添加了 <code>response</code> 事件的处理函数，则无论是使用 <code>response.read()</code>，或者添加 <code>data</code> 事件处理器，还是调用 <code>.resume()</code> 方法，都必须对响应对象的数据进行处理。只有数据经过处理之后，才会触发 <code>end</code> 事件。此外，除非读取数据，否则将会占用不必要的内容，直至触发 <code>process out of memory</code> 错误。</p>
+<p><strong>15</strong>.使用 <code>response.setHeader()</code> 配置头信息之后，这些头信息会被其他头信息合并并传递给 <code>response.writeHead()</code>，但是传递给 <code>response.writeHead()</code> 的头信息优先级较高,这就相当于你可以使用<code>setHeader</code>设置多个头信息不断叠加，但是要在响应发送过后再使用<code>setHeader</code>的话将会报错</p>
+<p><strong>16</strong>.在 HTTPS 中，使用 <code>request.socket.getPeerCertificate()</code> 方法可以获取客户端的验证资料。</p>
+<p><strong>17</strong>.<code>require</code>引入的模块实际上是通过在文件的外面包上一个：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(function(require,module,export....)&#123;</span><br><span class="line">    ....&#123;content&#125;....</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure></p>
+<p>做到的，所以不要再问require是哪里来的了</p>
+<p><strong>18</strong>.<code>require.main</code>既是主文件模块，并且如果没能够在自己的文件夹中找到需要的模块的话，会到<code>NODE_PATH</code>所指定的环境变量中去找有没有<code>node_modules</code></p>
+<p><strong>19</strong>.<code>os</code>模块可以用来判断系统，并针对不同的系统进行相应的配置，比如在使用<code>child_process</code>创建子线程的过程中，我们就需要知道是<code>window</code>或者<code>*nix</code>，看是来使用bat还是shell；</p>
+<p><strong>20</strong>.<code>path.join([path1][, path2][, ...])</code>方法非常实用，可以拼接出一个路径，空字符会被视为.,即当前路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">path.join(&apos;/foo&apos;, &apos;bar&apos;, &apos;baz/asdf&apos;, &apos;quux&apos;, &apos;..&apos;)</span><br><span class="line">// returns &apos;/foo/bar/baz/asdf&apos;</span><br></pre></td></tr></table></figure></p>
+<p><strong>21</strong>.当向进程发送<code>SIGNUP</code>信号的时候，将会关闭该进程；（应用：如果我们可以忽略<code>SIGHUP</code>信号，关掉窗口应该就不会影响程序的运行了。<code>nohup</code>命令可以达到这个目的，如果程序的标准输出/标准错误是终端，<code>nohup</code>默认将其重定向到<code>nohup.out</code>文件。值得注意的是<code>nohup</code>命令只是使得程序忽略<code>SIGHUP</code>信号，还需要使用标记<code>&amp;</code>把它放在后台运行，这样在退出<code>session</code>后也可以保持程序运行了）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/09/node文档阅读笔记/" data-id="ciu2q25xk0002xgcss4dmhc6p" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-进行项目开发时做的一些小笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/08/17/进行项目开发时做的一些小笔记/" class="article-date">
@@ -111,7 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/17/进行项目开发时做的一些小笔记/" data-id="cirz30zlt0007yccs8zpejo6o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/17/进行项目开发时做的一些小笔记/" data-id="ciu2q25ym000bxgcs5pz4zyti" class="article-share-link">Share</a>
       
       
     </footer>
@@ -221,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/转-作用域与作用域链/" data-id="cirz30zm30009yccshrzodvd3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/10/转-作用域与作用域链/" data-id="ciu2q25zk000cxgcsjzaot1ux" class="article-share-link">Share</a>
       
       
     </footer>
@@ -292,7 +352,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/对于redux的学习收集的资料/" data-id="cirz30zlx0008yccs8vlbas4k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/10/对于redux的学习收集的资料/" data-id="ciu2q25y30007xgcs5857aah0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -339,66 +399,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/01/node学习的几行笔记/" data-id="cirz30zlk0004yccsa4817iwm" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-React-Native——如果坑，请深坑" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/29/React-Native——如果坑，请深坑/" class="article-date">
-  <time datetime="2016-07-29T07:50:36.000Z" itemprop="datePublished">2016-07-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/29/React-Native——如果坑，请深坑/">React Native——如果坑，请深坑</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="2016年7月ReactNative跳坑记录"><a href="#2016年7月ReactNative跳坑记录" class="headerlink" title="2016年7月ReactNative跳坑记录"></a>2016年7月ReactNative跳坑记录</h2><hr>
-<p>1.添加组件属性，有一个地方需要注意，就是<code>class</code>属性需要写成 <code>className</code> ，<code>for</code> 属性需要写成 <code>htmlFor</code> ，这是因为 class 和 for 是 JavaScript 的保留字。</p>
-<p>2.在genymotion上进行模拟的时候，<strong>一定要关闭电脑的防火墙</strong>，并且要把手机的<strong>wifi连上</strong> <em>（好像5.0以上的版本不会自动连接wifi）</em>，将模拟器的ip和端口设置为可访问本机的ip（<code>10.0.3.2:8081</code>），如果是在手机上的话，也是可以打开网页尝试是否可以访问，可以访问后再将ip添加进genymotion的设置里面。</p>
-<p>3.React Native的打包器会首先寻找<code>File.&lt;platform&gt;.js</code>文件，然后再去寻找 <code>File.js</code> 。这就允许我们将Android平台的代码放置到 <code>File.android.js</code> , iOS 的放入到 <code>File.ios.js</code> , 以及Web平台的代码放入到 <code>File.js</code>, 而不需要改变导入的声明 ./File。</p>
-<p>4.在ES6中，变量的解构赋值用途很多,交换变量的值可以用这个奇妙的方法[x, y] = [y, x]。</p>
-<p>5.当你Image加载一个网络图片时，如果你不给该Image设置<code>width</code>和<code>height</code>，那你将什么都看不到。这还不算，当你使用ListView时如果该组件同时存在一个兄弟元素，那么此时ListView必须设置<code>height</code>，否则你会发现它不再响应用户的滚动操作。。。这个地方所说的<code>width</code>和<code>height</code>是指的在style属性中设置的值，如果<strong>直接设置height属性</strong>的话是不会起作用的。</p>
-<p>6.使用fetch时，当你试图提交附件表单数据的时候，请一定要使用FormData对象将数据包裹</p>
-<p>如果你只是普通的json提交，就按照官方例子来做：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fetch(API_LOGIN_URL, &#123;</span><br><span class="line">    method: &apos;POST&apos;,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &apos;Accept&apos;: &apos;application/json&apos;,</span><br><span class="line">      &apos;Content-Type&apos;: &apos;application/json&apos;,</span><br><span class="line">    &#125;,</span><br><span class="line">    body: JSON.stringify(&#123;</span><br><span class="line">      account: this.state.account,</span><br><span class="line">      password: this.state.password,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure></p>
-<p>7.FB提供了Dimensions组件可以用来获取屏幕的当前尺寸：<br>var deviceHeight = Dimensions.get(‘window’).height;<br>var deviceWidth = Dimensions.get(‘window’).width;</p>
-<p>8.当你打算在某个控件上套用设置好的某个样式，但需要单独为其设置一个额外特殊值时，你可以这样：<br><code>&lt;View style={[styles.demo, {backgroundColor: &quot;blue&quot;}]}&gt;&lt;/ View&gt;</code></p>
-<p>9.也就是如果<code>Text</code>元素在<code>Text</code>里边，可以考虑为inline元素， 如果单独在View里边，那就是Block。 </p>
-<p>10.我把View设置了<code>justifyContent: &#39;center&#39;</code>,<code>alignItems: &#39;center&#39;</code>的样式，并在里面放上了一个ViewPagerAndroid，这个时候如果不给他设置固定的宽度或者使用padding撑开他的话是看不见的，大概是因为被View的style设置压成了类似inline的属性。</p>
-<p>11.只有View组件在设置<code>borderRadius</code>属性过后，才会将自身的border一齐转变成圆角，<strong>其他元素比如Image和Touchable类的都不会有任何反应</strong>，边角是方的。</p>
-<p>12.如果突然出现了，不显示图片的情况，可以给他加一个边框，这样可以确定是没有找到资源还是布局错误，我非常意外的发现只需要设置borderWidth为0就可以让图片显示出来。<em>（改：比较大的图片有时候都不会显示出来，这就很尴尬了）</em></p>
-<p>13.在设置react-native-swiper的点的样式的时候，不能传入函数返回值，需要直接传入一个Element对象，我不知道是哪里出了错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Dot extends Component&#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;View style=&#123;&#123;</span><br><span class="line">                backgroundColor: &apos;rgba(0,0,0,.2)&apos;,</span><br><span class="line">                width: 2,</span><br><span class="line">                height: 2,</span><br><span class="line">                borderRadius: 10,</span><br><span class="line">                marginLeft: 3,</span><br><span class="line">                marginRight: 3,</span><br><span class="line">                marginTop: 3,</span><br><span class="line">                marginBottom: 3</span><br><span class="line">            &#125;&#125;/&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如果我传入Dot.render()系统会报错，提示我是一个空元素，但是<strong>直接传入View</strong>就可以成功。</p>
-<p>14.RN中元素默认的定位方式是 relative ，并且只有relative 和 absolute 两种定位方式。<strong>如果为组件加上 position:absolute ，它将会以inline的方式渲染在页面上</strong>。并且脱离正常文档流。也就是视觉上会<strong>被后面的组件覆盖</strong>，但不能通过zIndex方式调整。嵌套的Text不可用。 </p>
-<p>15.在给控件写style属性的时候，尽量用一个View包起来，因为有很多控件的style样式无法应用，浪费调试时间。</p>
-<p>16.在调试代码的时候，要时刻注意this的指向，比如在下面的例子中，console.log中的this就指向了Drawer，变成了调用他的this了,<strong>renderNavigationView`有毒，他会调用传入的函数方法，并且把里面的this指针强行指向自己。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class main extends Component&#123;</span><br><span class="line">    navigationView()&#123;</span><br><span class="line">        console.log(this);</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return(</span><br><span class="line">            &lt;DrawerLayoutAndroid</span><br><span class="line">            	renderNavigationView=&#123;this.navigationView&#125;</span><br><span class="line">            &gt;</span><br><span class="line">  				.............</span><br><span class="line">            &lt;/DrawerLayoutAndroid&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>17.如果将文字放在图片下方，但是只设置了图片的宽度，可能会导致文字不会紧贴图片下方的问题，如下就会出现此种问题，这个时候设置上height就行了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;&#123;justifyContent:&quot;center&quot;,alignItems:&quot;center&quot;&#125;&#125;&gt;</span><br><span class="line">    &lt;Image source=&#123;require(&apos;&apos;)&#125; style=&#123;&#123;width:120&#125;&#125; resizeMode=&quot;contain&quot;/&gt;</span><br><span class="line">    &lt;Text&gt;没有找到你的缓存哟&lt;/Text&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure></p>
-<p>18.<code>hairlineWidth:CallExpression</code>用来定义当前平台<strong>最细的宽度</strong>。该属性用来设置边框或者两个组件之间的分割线。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    borderBottomColor: &apos;#bbb&apos;,</span><br><span class="line">    borderBottomWidth: StyleSheet.hairlineWidth</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>会根据当前平台信息，自动转换成一根很细的线。</p>
-<p>19.推库上这篇文章<a href="http://www.tuicool.com/articles/IreaYfv" target="_blank" rel="external">《React Native 触摸事件处理详解》</a> 关于手势处理的，非常有用！！！！！！！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/29/React-Native——如果坑，请深坑/" data-id="cirz30zkb0001yccs5g9yrwxb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/01/node学习的几行笔记/" data-id="ciu2q25xp0003xgcsbg4zrh5t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -429,7 +430,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
     </div>
   </div>
 
@@ -440,6 +441,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/10/09/node文档阅读笔记/">node文档阅读笔记</a>
+          </li>
         
           <li>
             <a href="/2016/08/17/进行项目开发时做的一些小笔记/">进行项目开发时做的一些小笔记</a>
@@ -455,10 +460,6 @@
         
           <li>
             <a href="/2016/08/01/node学习的几行笔记/">node学习的几行笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/29/React-Native——如果坑，请深坑/">React Native——如果坑，请深坑</a>
           </li>
         
       </ul>
