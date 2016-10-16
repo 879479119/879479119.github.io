@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>nginx配置文件中文解析 | 磊磊SAMA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="转载，忘记了出处123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx配置文件中文解析">
+<meta property="og:url" content="http://yoursite.com/2016/10/16/nginx配置文件中文解析/index.html">
+<meta property="og:site_name" content="磊磊SAMA">
+<meta property="og:description" content="转载，忘记了出处123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100">
+<meta property="og:updated_time" content="2016-10-16T12:57:51.977Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nginx配置文件中文解析">
+<meta name="twitter:description" content="转载，忘记了出处123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100">
+  
+    <link rel="alternate" href="/atom.xml" title="磊磊SAMA" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">磊磊SAMA</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">why don&#39;t you get to fly in the air?</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-nginx配置文件中文解析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/16/nginx配置文件中文解析/" class="article-date">
+  <time datetime="2016-10-16T12:44:58.000Z" itemprop="datePublished">2016-10-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      nginx配置文件中文解析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="转载，忘记了出处"><a href="#转载，忘记了出处" class="headerlink" title="转载，忘记了出处"></a>转载，忘记了出处</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br></pre></td><td class="code"><pre><span class="line">#定义Nginx运行的用户和用户组</span><br><span class="line">user www www;</span><br><span class="line"></span><br><span class="line">#nginx进程数，建议设置为等于CPU总核心数。</span><br><span class="line">worker_processes 8;</span><br><span class="line"></span><br><span class="line">#全局错误日志定义类型，[ debug | info | notice | warn | error | crit ]</span><br><span class="line">error_log /var/log/nginx/error.log info;</span><br><span class="line"></span><br><span class="line">#进程文件</span><br><span class="line">pid /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line">#一个nginx进程打开的最多文件描述符数目，理论值应该是最多打开文件数（系统的值ulimit -n）与nginx进程数相除，但是nginx分配请求并不均匀，所以建议与ulimit -n的值保持一致。</span><br><span class="line">worker_rlimit_nofile 65535;</span><br><span class="line"></span><br><span class="line">#工作模式与连接数上限</span><br><span class="line">events</span><br><span class="line">&#123;</span><br><span class="line">	#参考事件模型，use [ kqueue | rtsig | epoll | /dev/poll | select | poll ]; epoll模型是Linux 2.6以上版本内核中的高性能网络I/O模型，如果跑在FreeBSD上面，就用kqueue模型。</span><br><span class="line">	use epoll;</span><br><span class="line">	#单个进程最大连接数（最大连接数=连接数*进程数）</span><br><span class="line">	worker_connections 65535;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#设定http服务器</span><br><span class="line">http</span><br><span class="line">&#123;</span><br><span class="line">	include mime.types; #文件扩展名与文件类型映射表</span><br><span class="line">	default_type application/octet-stream; #默认文件类型</span><br><span class="line">	#charset utf-8; #默认编码</span><br><span class="line">	server_names_hash_bucket_size 128; #服务器名字的hash表大小</span><br><span class="line">	client_header_buffer_size 32k; #上传文件大小限制</span><br><span class="line">	large_client_header_buffers 4 64k; #设定请求缓</span><br><span class="line">	client_max_body_size 8m; #设定请求缓</span><br><span class="line">	sendfile on; #开启高效文件传输模式，sendfile指令指定nginx是否调用sendfile函数来输出文件，对于普通应用设为 on，如果用来进行下载等应用磁盘IO重负载应用，可设置为off，以平衡磁盘与网络I/O处理速度，降低系统的负载。注意：如果图片显示不正常把这个改成off。</span><br><span class="line">	autoindex on; #开启目录列表访问，合适下载服务器，默认关闭。</span><br><span class="line">	tcp_nopush on; #防止网络阻塞</span><br><span class="line">	tcp_nodelay on; #防止网络阻塞</span><br><span class="line">	keepalive_timeout 120; #长连接超时时间，单位是秒</span><br><span class="line">	</span><br><span class="line">	#FastCGI相关参数是为了改善网站的性能：减少资源占用，提高访问速度。下面参数看字面意思都能理解。</span><br><span class="line">	fastcgi_connect_timeout 300;</span><br><span class="line">	fastcgi_send_timeout 300;</span><br><span class="line">	fastcgi_read_timeout 300;</span><br><span class="line">	fastcgi_buffer_size 64k;</span><br><span class="line">	fastcgi_buffers 4 64k;</span><br><span class="line">	fastcgi_busy_buffers_size 128k;</span><br><span class="line">	fastcgi_temp_file_write_size 128k;</span><br><span class="line">	</span><br><span class="line">	#gzip模块设置</span><br><span class="line">	gzip on; #开启gzip压缩输出</span><br><span class="line">	gzip_min_length 1k; #最小压缩文件大小</span><br><span class="line">	gzip_buffers 4 16k; #压缩缓冲区</span><br><span class="line">	gzip_http_version 1.0; #压缩版本（默认1.1，前端如果是squid2.5请使用1.0）</span><br><span class="line">	gzip_comp_level 2; #压缩等级</span><br><span class="line">	gzip_types text/plain application/x-javascript text/css application/xml;</span><br><span class="line">	#压缩类型，默认就已经包含text/html，所以下面就不用再写了，写上去也不会有问题，但是会有一个warn。</span><br><span class="line">	gzip_vary on;</span><br><span class="line">	#limit_zone crawler $binary_remote_addr 10m; #开启限制IP连接数的时候需要使用</span><br><span class="line">	</span><br><span class="line">	upstream blog.ha97.com </span><br><span class="line">	&#123;</span><br><span class="line">	#upstream的负载均衡，weight是权重，可以根据机器配置定义权重。weigth参数表示权值，权值越高被分配到的几率越大。</span><br><span class="line">	server 192.168.80.121:80 weight=3;</span><br><span class="line">	server 192.168.80.122:80 weight=2;</span><br><span class="line">	server 192.168.80.123:80 weight=3;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	#虚拟主机的配置</span><br><span class="line">	server</span><br><span class="line">	&#123;</span><br><span class="line">		#监听端口</span><br><span class="line">		listen 80;</span><br><span class="line">		#域名可以有多个，用空格隔开</span><br><span class="line">		server_name www.ha97.com ha97.com;</span><br><span class="line">		index index.html index.htm index.php;</span><br><span class="line">		root /data/www/ha97;</span><br><span class="line">		location ~ .*\.(php|php5)?$</span><br><span class="line">		&#123;</span><br><span class="line">			fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">			fastcgi_index index.php;</span><br><span class="line">			include fastcgi.conf;</span><br><span class="line">		&#125;</span><br><span class="line">		#图片缓存时间设置</span><br><span class="line">		location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$</span><br><span class="line">		&#123;</span><br><span class="line">			expires 10d;</span><br><span class="line">		&#125;</span><br><span class="line">		#JS和CSS缓存时间设置</span><br><span class="line">		location ~ .*\.(js|css)?$</span><br><span class="line">		&#123;</span><br><span class="line">			expires 1h;</span><br><span class="line">		&#125;</span><br><span class="line">		#日志格式设定</span><br><span class="line">		log_format access &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">		&apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">		&apos;&quot;$http_user_agent&quot; $http_x_forwarded_for&apos;;</span><br><span class="line">		#定义本虚拟主机的访问日志</span><br><span class="line">		access_log /var/log/nginx/ha97access.log access;</span><br><span class="line">		</span><br><span class="line">		#对 &quot;/&quot; 启用反向代理</span><br><span class="line">		location / &#123;</span><br><span class="line">			proxy_pass http://127.0.0.1:88;</span><br><span class="line">			proxy_redirect off;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			#后端的Web服务器可以通过X-Forwarded-For获取用户真实IP</span><br><span class="line">			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">			#以下是一些反向代理的配置，可选。</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			client_max_body_size 10m; #允许客户端请求的最大单文件字节数</span><br><span class="line">			client_body_buffer_size 128k; #缓冲区代理缓冲用户端请求的最大字节数，</span><br><span class="line">			proxy_connect_timeout 90; #nginx跟后端服务器连接超时时间(代理连接超时)</span><br><span class="line">			proxy_send_timeout 90; #后端服务器数据回传时间(代理发送超时)</span><br><span class="line">			proxy_read_timeout 90; #连接成功后，后端服务器响应时间(代理接收超时)</span><br><span class="line">			proxy_buffer_size 4k; #设置代理服务器（nginx）保存用户头信息的缓冲区大小</span><br><span class="line">			proxy_buffers 4 32k; #proxy_buffers缓冲区，网页平均在32k以下的设置</span><br><span class="line">			proxy_busy_buffers_size 64k; #高负荷下缓冲大小（proxy_buffers*2）</span><br><span class="line">			proxy_temp_file_write_size 64k;</span><br><span class="line">			#设定缓存文件夹大小，大于这个值，将从upstream服务器传</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">		#设定查看Nginx状态的地址</span><br><span class="line">		location /NginxStatus &#123;</span><br><span class="line">			stub_status on;</span><br><span class="line">			access_log on;</span><br><span class="line">			auth_basic &quot;NginxStatus&quot;;</span><br><span class="line">			auth_basic_user_file conf/htpasswd;</span><br><span class="line">			#htpasswd文件的内容可以用apache提供的htpasswd工具来产生。</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">		#本地动静分离反向代理配置</span><br><span class="line">		#所有jsp的页面均交由tomcat或resin处理</span><br><span class="line">		location ~ .(jsp|jspx|do)?$ &#123;</span><br><span class="line">			proxy_set_header Host $host;</span><br><span class="line">			proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">			proxy_pass http://127.0.0.1:8080;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		#所有静态文件由nginx直接读取不经过tomcat或resin</span><br><span class="line">		location ~ .*.(htm|html|gif|jpg|jpeg|png|bmp|swf|ioc|rar|zip|txt|flv|mid|doc|ppt|pdf|xls|mp3|wma)$</span><br><span class="line">		&#123; </span><br><span class="line">			expires 15d; </span><br><span class="line">		&#125;</span><br><span class="line">		location ~ .*.(js|css)?$</span><br><span class="line">		&#123; </span><br><span class="line">			expires 1h; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/16/nginx配置文件中文解析/" data-id="ciucn0rqz0001pscsvb8u8k5h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/09/node文档阅读笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">node文档阅读笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/10/16/nginx配置文件中文解析/">nginx配置文件中文解析</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/09/node文档阅读笔记/">node文档阅读笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/17/进行项目开发时做的一些小笔记/">进行项目开发时做的一些小笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/10/转-作用域与作用域链/">[转]作用域与作用域链</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/10/对于redux的学习收集的资料/">对于redux的学习收集的资料</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 RockSAMA<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

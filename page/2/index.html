@@ -68,6 +68,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-node学习的几行笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/01/node学习的几行笔记/" class="article-date">
+  <time datetime="2016-08-01T05:53:10.000Z" itemprop="datePublished">2016-08-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/01/node学习的几行笔记/">node学习的几行笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Node和Express的一丢丢学习记录"><a href="#Node和Express的一丢丢学习记录" class="headerlink" title="Node和Express的一丢丢学习记录"></a>Node和Express的一丢丢学习记录</h3><hr>
+<p>1.node中使用mysql数据库，在<code>createConnection</code>创建连接后就没有必要再使用<code>connect</code>方法进行手动连接了，同样的<code>end</code>方法也不要使用；如果使用了<code>connect</code>方法，node将会在第二次查询的时候抛出一个错误</p>
+<pre><code>Cannot enqueue Handshake after invoking quit
+</code></pre><p>2.node中使用<code>app.all(&quot;*&quot;);</code>可以拦截任何路由活动，过后所有的请求都会被拦截，也不能将<code>app.get(&quot;/room&quot;);</code>类似的路由嵌套在里面。</p>
+<p>3.如果把index.html放在了项目的根目录下面，那么访问项目时将不会进入<code>app.get(&quot;/&quot;)</code>的路由，而是直接读取index的文件，<strong>这一点很关键！！</strong>简直是没有人性的设计。</p>
+<p>4.说了好多次了，空的对象转换为布尔值也是为真（可以理解成自身带有toString等方法）；在用mysql毁掉函数处理查询的result值时，<strong>千万不能</strong>用!result来判断未查询到结果。</p>
+<p>5.这个数字<code>2147483647</code>是一个美妙的数字，它是三十二位系统中所能表示的最大的有符号整型数字，在用node向mysql数据库中写入的日期的时候不要将时间戳以数字的形式传入存储，不然他会转变成这个值的。<em>（难过脸）</em></p>
+<p>6.node中需要用到非常多的回调函数，所以要注意好好控制代码的结构，有必要时使用一些库（sync等）；另外，回调函数的作用域都是在调用处的上下文中的，这意味着不用传入大量参数。</p>
+<p>7.千万不要将node的项目名称设置为与依赖的包重名，这里指的项目名称是package.json里面设置的项目名称，如果<strong>设置成了一样的话将会报错</strong>（项目依赖名称冲突）。</p>
+<p>8.redis是只能够存储键值对的，所以如果要存储多个属性的对象的话，需要将他转换为JSON字符串，取出来的时候一定要转换回去。</p>
+<p>9.<strong>标准JSON的键是要用双引号括起来的哦</strong>，只是平时在接受里面使用的时候，如果不包含“<code>- &amp; *</code>”等符号可以直接用不带引号或者单引号的表达。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/01/node学习的几行笔记/" data-id="ciucn0rr60003pscsjd54n7r8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-React-Native——如果坑，请深坑" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/07/29/React-Native——如果坑，请深坑/" class="article-date">
@@ -117,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/29/React-Native——如果坑，请深坑/" data-id="ciu2q25xf0001xgcsvx6k47xl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/29/React-Native——如果坑，请深坑/" data-id="ciucn0rrk0007pscsd8ewd1ig" class="article-share-link">Share</a>
       
       
     </footer>
@@ -173,7 +220,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/25/chrome开发者工具中的HTML与CSS调试/" data-id="ciu2q25xu0005xgcsmcll7pae" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/25/chrome开发者工具中的HTML与CSS调试/" data-id="ciucn0rrb0004pscs2szd4zpp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -262,7 +309,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/06/07/Chrome冷知识/" data-id="ciu2q25x60000xgcsmktw7qc5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/06/07/Chrome冷知识/" data-id="ciucn0rr30002pscs9snata1b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -500,71 +547,7 @@ If(b){Function c (){Alert(2333);}
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/28/读Javascript高程之笔记/" data-id="ciu2q25yj000axgcslspo1mty" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-主要关于Canvas和Node的一些笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/27/主要关于Canvas和Node的一些笔记/" class="article-date">
-  <time datetime="2016-05-27T11:52:14.000Z" itemprop="datePublished">2016-05-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/27/主要关于Canvas和Node的一些笔记/">主要关于Canvas和Node的一些笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>9.获取鼠标移动的位置，兼容各大主流浏览器<em>（当然没有IE，他才不算主流，哼）</em></p>
-<pre><code>1 document.addEventListener(&quot;mousemove&quot;, function(e) {
-2   var movementX = e.movementX   ||
-3   e.mozMovementX||
-4   e.webkitMovementX ||
-5   0,
-6   movementY = e.movementY   ||
-7   e.mozMovementY||
-8   e.webkitMovementY ||
-9   0;
-10 
-11   // Print the mouse movement delta values
-12   console.log(&quot;movementX=&quot; + movementX, &quot;movementY=&quot; + movementY);
-13 }, false);
-</code></pre><p>IE和FF的定位有个1px的差别，实际上，IE的定位从0开始，FF的定位从1开始，FF永远会比IE大1px，需要根据实际情况处理。</p>
-<p>10.<code>currentColor</code>属性可以用于CSS中替代当前选择其中文字的颜色，可以应用到一些小ICON的使用上面，对应的做法就是将显示部分做成一个蒙版，透过蒙版可以看到背景色，这时我们设置文字的<code>hover</code>改变颜色就可以很方便的改变icon的颜色了。</p>
-<p>11.<code>background:#f00 url(background.gif) no-repeat fixed 0 0/100px 100px;</code><br>“ / ”前面的<code>0 0</code>，就是<code>background-position</code>， 后面的<code>100px 100px</code>， 就是background-size的值，这种格式下，<br>background-position的值不能省略。</p>
-<p>12.在canvas中使用socket即时通讯画图，使用越粗的线就会越卡，在线粗相同的情况下，实用的阴影越大也会更加卡，不过原因尚不清楚。</p>
-<p>13.有的智障编辑器是不会提示拼写错误的，今天早上就把<em>block</em>写成了<em>blcok</em>调试了一个小时的bug没发现问题</p>
-<p>14.在node里面进行路由操作的时候，一定不要把socket的connect事件加入到路由里面，不然会出现刷新一次多一个socket的情况。</p>
-<p>15.在node里面使用<code>res.writeHead</code>会发生报错的情况，不能够在发送出消息后设置头部，但是使用setHead不会产生这种错误，如果想要获取到cookie的话使用<code>req.headers.cookie</code>可以获取到<br>“schoolid=1;schoolName=%E9%87%8D%E5%BA%86%E9%82%AE%E7%94%B5%E5%A4%A7%E5%AD%A6; _ga=GA1.1.1329053600.1463749095; a=000”<br>这种形式的字符串，可以手动解析，也可以使用parse-cookie的中间件。并且，在set-cookie的时候如果不配置max-age的话，将使用默认的session属性；当max-age为<strong>负数或者零</strong>时，cookie将不起任何作用。</p>
-<p>16.（题外话）百度搜索的最近搜索全部存在localstorage里面的BDSUGSTORED数据，JSON格式哦。</p>
-<p>17.cookie的domain，代表了其作用域，即有效范围。</p>
-<p>一般是对应的http地址的最开始那部分的值。</p>
-<p>比如对于访问<a href="http://login.live.com//xxxx" target="_blank" rel="external">http://login.live.com//xxxx</a> 来说，cookie的domain是.live.com的话，那么就是和此网页相匹配，和此网页的Host=login.live.com相匹配，是有效的。</p>
-<p>尤其需要注意的是，cookie的domain所代表的含义。</p>
-<p>举例来说，如果一个cookie的domain是.live.com的话，那么对于去访问.users.storage.live.com</p>
-<p>或.storage.live.com类型的地址的话，是无效的，因为.live.com，其作用域，只是xxx.live.com，而并不包括xxx.users.storage.live.com或xxx.storage.live.com类型的地址。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/27/主要关于Canvas和Node的一些笔记/" data-id="ciu2q25ye0009xgcslsspcf3w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/28/读Javascript高程之笔记/" data-id="ciucn0rs0000apscszqywn4mk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -608,6 +591,10 @@ If(b){Function c (){Alert(2333);}
       <ul>
         
           <li>
+            <a href="/2016/10/16/nginx配置文件中文解析/">nginx配置文件中文解析</a>
+          </li>
+        
+          <li>
             <a href="/2016/10/09/node文档阅读笔记/">node文档阅读笔记</a>
           </li>
         
@@ -621,10 +608,6 @@ If(b){Function c (){Alert(2333);}
         
           <li>
             <a href="/2016/08/10/对于redux的学习收集的资料/">对于redux的学习收集的资料</a>
-          </li>
-        
-          <li>
-            <a href="/2016/08/01/node学习的几行笔记/">node学习的几行笔记</a>
           </li>
         
       </ul>
