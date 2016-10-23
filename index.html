@@ -68,6 +68,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-十月开发小记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/23/十月开发小记/" class="article-date">
+  <time datetime="2016-10-23T05:00:01.000Z" itemprop="datePublished">2016-10-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/23/十月开发小记/">十月开发小记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Node-Part"><a href="#Node-Part" class="headerlink" title="Node Part"></a>Node Part</h2><p>1.在程序中通过<code>process.env.npm_lifecycle_event</code>这个变量，可以获得<code>npm run ${XXX}</code>之中的字符串，针对不同的操作做不同的配置</p>
+<p>2.<code>0.0.0.0</code>这个IP在windows下可以代表所有没有被标记的ip，具体用途可以是在使用服务器时，将访问端口配置成<code>0.0.0.0</code>，这样就可以在外网对本机服务器进行访问了</p>
+<p>3.<code>process.argv</code>数组之中存储的是实际运行的命令 每个执行的js文件保存的字符串都会是<strong>完整的路径</strong></p>
+<p>4.呵呵<code>react-router</code>居然默认安装的是<code>0.13.0</code>版本，这真是极大的一个坑，值得你调试一天</p>
+<p>5.<code>Object.freeze()</code> 方法可以<strong>冻结</strong>一个对象，冻结指的是<strong>不能向这个对象添加新的属性</strong>，<strong>不能修改</strong>其已有属性的值，<strong>不能删除</strong>已有属性，以及<strong>不能修改</strong>该对象已有属性的可枚举性、可配置性、可写性。也就是说，这个对象永远是不可变的。该方法返回被冻结的对象。</p>
+<p>6.<code>document.documentElement.clientWidth;</code>,<code>document.documentElement.clientHeight;</code>可以获取移动设备的可见高度和宽度，移动端是个大坑，在微信和UC浏览器中显示可能都会有巨大不同；</p>
+<h2 id="System-Part"><a href="#System-Part" class="headerlink" title="System Part"></a>System Part</h2><p>1.进程间的内存是无法共享的，线程的内存共享，对一个应用程序开辟多个线程便可以”同时”进行多种操作</p>
+<p>2.每个线程都一个自己的帧，帧里面存放了现在的堆栈信息和过程信息；帧里面的信息不会不会混杂到一起</p>
+<h2 id="React-Native-Part"><a href="#React-Native-Part" class="headerlink" title="React Native Part"></a>React Native Part</h2><p>1.运行packager的时候，经常会出现各种各样的问题，在windows上更是坑洞遍地，除了教程里面经常出现的之外，这里再说你两个</p>
+<p>如果程序一直卡在<code>find dependencies</code>的状态，并且内存不断攀高，到了一定时间过后告诉你内存达到最大值并推出，不要想太多，这只是因为你没有把包装好，不要使用cnpm装包，而且也一定要注意过程中出现的<strong>gyp错误</strong>，这个错误的出现是因为，各种包为了适应不同的平台（*inux，windows），选择在<code>npm install</code>过后再进行编译，如果没有编译成功就会抛出错误，为日后开发错误埋下伏笔；</p>
+<p>如果报了<code>watchman</code>的错误，可能是因为你没有装全局的<code>watchman</code>也有可能是因为你装了<code>cygwin</code>导致系统认为任务是在<code>linux</code>环境下进行，这个时候需要去掉<code>cygwin</code>的<strong>环境变量</strong>；当然还有可能是因为你是<code>windows</code>系统，他有几率报错，这个时候要删掉文件里面的<code>watchman</code>  即<code>npm uninstall warchman</code></p>
+<p>2.<code>react-native</code>中的阴影属性仅支持<code>ios</code>系统，安卓只有靠图片来实现了</p>
+<p>3.如果需要使用<code>POST</code>发送表单请求，最好是直接用下面这种方式，使用<code>FormData</code>对象传数据的话，会被<code>webkit</code>浏览器强行转换为<code>webkit</code>的一种<code>binary</code>文件，后台容易报<code>400</code>的参数错误；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fetch(&quot;http://bilibili-service.daoapp.io/search&quot;,&#123;</span><br><span class="line">    method: &apos;POST&apos;,</span><br><span class="line">    headers: &#123;</span><br><span class="line">        &apos;Content-Type&apos;: &apos;application/x-www-form-urlencoded&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    body: &quot;content=aa&amp;page=0&amp;count=20&quot;</span><br><span class="line">&#125;).then(rsp =&gt; rsp.json())</span><br><span class="line">    .then(rsp =&gt; console.info(rsp))</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/10/23/十月开发小记/" data-id="cium6cpgo0006ngcs5jp89ajq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-nginx配置文件中文解析" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/10/16/nginx配置文件中文解析/" class="article-date">
@@ -94,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/16/nginx配置文件中文解析/" data-id="ciucn0rqz0001pscsvb8u8k5h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/16/nginx配置文件中文解析/" data-id="cium6cpgg0003ngcs9okt1fi7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -154,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/09/node文档阅读笔记/" data-id="ciucn0rrd0005pscsfx9chegb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/09/node文档阅读笔记/" data-id="cium6cph90009ngcsvg73ckzs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -207,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/17/进行项目开发时做的一些小笔记/" data-id="ciucn0rs4000cpscscktx2f3i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/17/进行项目开发时做的一些小笔记/" data-id="cium6cphh000dngcsx80k8nhi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -317,78 +366,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/转-作用域与作用域链/" data-id="ciucn0rs2000bpscsiplrhhd6" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-对于redux的学习收集的资料" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/10/对于redux的学习收集的资料/" class="article-date">
-  <time datetime="2016-08-10T08:26:46.000Z" itemprop="datePublished">2016-08-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/10/对于redux的学习收集的资料/">对于redux的学习收集的资料</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="学习Redux框架是艰辛的"><a href="#学习Redux框架是艰辛的" class="headerlink" title="学习Redux框架是艰辛的"></a>学习Redux框架是艰辛的</h2><p>接触React已近一段时间了，但是最近才开始用Redux重构项目，由于是别人帮忙重构的，所以看到刚刚重构的代码我是一脸懵逼的，根本不知道在写些什么。慢慢的多看了些文档和博客才得以了解项目的结构，过程中收集的一些资料在这里也就分享出来：</p>
-<h3 id="基本手册"><a href="#基本手册" class="headerlink" title="基本手册"></a>基本手册</h3><hr>
-<ul>
-<li><a href="http://cn.redux.js.org/" target="_blank" rel="external">Redux中文手册</a></li>
-<li><a href="http://redux.js.org/" target="_blank" rel="external">英文原版手册</a></li>
-</ul>
-<h3 id="简单的系列教程"><a href="#简单的系列教程" class="headerlink" title="简单的系列教程"></a>简单的系列教程</h3><hr>
-<ul>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5145073.html" target="_blank" rel="external">react+redux教程（一）connect、applyMiddleware、thunk、webpackHotMiddleware</a></p>
-</li>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5147445.html" target="_blank" rel="external">react+redux教程（二）redux的单一状态树完全替代了react的状态机？</a></p>
-</li>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5149006.html" target="_blank" rel="external">react+redux教程（三）reduce()、filter()、map()、some()、every()、…展开属性</a></p>
-</li>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5161003.html" target="_blank" rel="external">react+redux教程（四）undo、devtools、router</a></p>
-</li>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5170835.html" target="_blank" rel="external">react+redux教程（五）异步、单一state树结构、componentWillReceiveProps</a></p>
-</li>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5174861.html" target="_blank" rel="external">react+redux教程（六）redux服务端渲染流程</a></p>
-</li>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5177852.html" target="_blank" rel="external">react+redux教程（七）自定义redux中间件</a></p>
-</li>
-<li><p><a href="http://www.cnblogs.com/lewis617/p/5180097.html" target="_blank" rel="external">react+redux教程（八）连接数据库的redux程序</a></p>
-</li>
-</ul>
-<h3 id="一点也不容易搞懂"><a href="#一点也不容易搞懂" class="headerlink" title="一点也不容易搞懂"></a>一点也不容易搞懂</h3><hr>
-<ul>
-<li><a href="http://www.tuicool.com/articles/u6JRjyz" target="_blank" rel="external">深入浅出Redux中间件</a></li>
-<li><a href="http://www.zhangxinxu.com/wordpress/2013/02/js-currying/" target="_blank" rel="external">JS中的柯里化</a></li>
-</ul>
-<h3 id="项目实例"><a href="#项目实例" class="headerlink" title="项目实例"></a>项目实例</h3><hr>
-<p>其实我也没有认真去找，但是跟着基本教程里面的做就相当于是有了一个框架了，继续在上面进行开发足矣，这里只附上一个自己的项目。</p>
-<ul>
-<li><a href="https://github.com/879479119/Bilibili-React-Native" target="_blank" rel="external">Bilibili-React-Native</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/对于redux的学习收集的资料/" data-id="ciucn0rrx0009pscsmbb2kyen" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/10/转-作用域与作用域链/" data-id="cium6cphe000cngcsrghc0en1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -432,6 +410,10 @@
       <ul>
         
           <li>
+            <a href="/2016/10/23/十月开发小记/">十月开发小记</a>
+          </li>
+        
+          <li>
             <a href="/2016/10/16/nginx配置文件中文解析/">nginx配置文件中文解析</a>
           </li>
         
@@ -445,10 +427,6 @@
         
           <li>
             <a href="/2016/08/10/转-作用域与作用域链/">[转]作用域与作用域链</a>
-          </li>
-        
-          <li>
-            <a href="/2016/08/10/对于redux的学习收集的资料/">对于redux的学习收集的资料</a>
           </li>
         
       </ul>

@@ -68,6 +68,244 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-读Javascript高程之笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/28/读Javascript高程之笔记/" class="article-date">
+  <time datetime="2016-05-28T09:13:38.000Z" itemprop="datePublished">2016-05-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/28/读Javascript高程之笔记/">读Javascript高程之笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="早期学习Javascript高程的一些笔记"><a href="#早期学习Javascript高程的一些笔记" class="headerlink" title="早期学习Javascript高程的一些笔记"></a>早期学习Javascript高程的一些笔记</h2><p>1.<code>&lt;button&gt;</code>标签的默认type等同于input里面的submit，所以非常容易出现问题</p>
+<p><strong>2.</strong>对于不支持Script标签的浏览器，在里面用注释</p>
+<pre><code>&lt;script&gt;&lt;!--
+..........
+//--&gt;&lt;/script&gt;
+</code></pre><p>3.如果没有<code>&lt;!Doctype&gt;</code>的标签，浏览器默认进入混杂模式，并且DTD是外部引入的；</p>
+<p>4.JS标识符的开头可以是字母，_和$；</p>
+<p>5.注释中可以声明一些版权，或者变量的相关信息</p>
+<pre><code>/**
+ * @copyright Redstar
+ * @param temp A temporary variable
+ */
+</code></pre><p>6.在函数内部未用var定义的变量会升级为全局变量，在严格模式下会<strong>抛出错误</strong>；</p>
+<p>7.数字的科学计数表示<strong>只可用于十进制</strong>，八进制，十六进制都不行（其中十六进制是会把e认做14）；</p>
+<p>8.Number()方法可以读各进制的纯数字字符串为整数（浮点数），<code>ParseInt()</code>可以在字符串中把不能识别字符前边的读为数字，String()也类似；</p>
+<p>9.瞧一瞧看一看</p>
+<pre><code>ParseInt(“AF”,16) = ParseInt(“0xAF”);   
+ParseInt(“AF”) = NaN;
+</code></pre><p>10.<code>toLocalString()</code>方法会执行对象的<code>toString</code>方法（如果设置了的话），<code>toString()</code>会把对象和子对象的toString都执行一遍；</p>
+<p>11.计算时不难发现：</p>
+<pre><code>a)1 + 2 + “a” = “3a”;
+b)“a” + 1 + 2 = ”a12”;
+c)“a” + (1 + 2) = “a3”;
+</code></pre><p>12.for循环判断体中设置的变量之后还是可以使用的</p>
+<pre><code>For(var i = 0;i &lt; 3;i ++){
+    Alert(123);
+}
+Alert(i);    //show the number “3”
+</code></pre><p>13.循环体可以用一个名字在外做标签（label），之后用来break掉</p>
+<pre><code>Count:
+For(var i = 0;i &lt; 2;i ++){
+    Alert(i ++);
+    If(i == 1){
+        Break count;
+    }
+}
+</code></pre><p>14.with相当于创建了一个外部框架，其内可以直接使用他的属性，并且会建立自己的作用域，所以不建议使用；</p>
+<p>15.Javascript中就算有<code>setTimeOut</code>和<code>setInterval</code>，他仍然不是多线程的；</p>
+<p>16.发现了switch的一种非常奇特的用法</p>
+<pre><code>Var num = 25;
+Switch(true){
+    Case num &gt; 0:
+        Alert(123);
+    Case num &gt; 10:
+        Alert(456);
+    Default :
+        Alert(789);
+)
+</code></pre><p>17.JS中没有重载这一个概念，因为它的函数参数都可以是不确定的，多次复写一个函数只会把它进行替换；</p>
+<p>18.对象无法被直接拷贝，以下做法都是错误的示范：</p>
+<pre><code>Var o = new Object();
+Var obj = o; //只是让指针指向同一块内存，并没有拷贝
+Var obj = new Object(o); //同上
+</code></pre><p>正确的做法是把对象的属性一个一个的对应在另一个对象之中单独建立，这样才能能够避免指向同一块内存的问题；</p>
+<p>19.非常的奇怪哈，在函数中传入对象，对对象的属性进行操作后，会直接改变其属性，并不会因为函数执行完毕时内存的消除而失去效果。但是对于其他的数组，数字等等则不会有效果，<em>证明对象的存储机制有待探究；</em></p>
+<pre><code>Function a (obj){
+    Obj.num = 2;
+}
+
+Var o = new Object({
+    Num = 0;
+});
+
+A(o);
+Alert(o.num);  //结果出人意料的为2
+</code></pre><p>20.全局变量的作用域其实就是window，所有全局变量和函数都是window的属性和方法；</p>
+<p>21.<code>Eval()</code>函数会极大的影响js的性能；</p>
+<pre><code>var sum = 0;
+console.log(new Date());
+for(var t = 0;t &lt; 1000000;t ++){
+    sum += t;
+}
+console.log(new Date());
+eval(&quot;for(var t = 0;t &lt; 1000000;t ++){sum += t;}&quot;);
+console.log(new Date());
+for(t = 0;t &lt; 1000000;t ++){
+    eval(&quot;sum += t&quot;);
+}
+console.log(new Date());
+</code></pre><p>得到的测试结果是：</p>
+<pre><code>Date 2015-12-08T08:27:10.777Z 0z
+Date 2015-12-08T08:27:10.788Z 0.011z
+Date 2015-12-08T08:27:11.155Z 0.367z
+Date 2015-12-08T08:27:12.856Z 1.701z
+</code></pre><p>可见在耗时的增长基本与eval的使用次数是成比例的，使用的时候千万不要把eval放到循环体里面；</p>
+<p>22.在if,with块中声明的变量在执行完过后并不会被销毁：</p>
+<pre><code>If(true){
+    Var a = 0;
+}
+Alert(a); // a = 0;
+</code></pre><p>23.要让JS自带的垃圾清理机制清除一个变量只需要将他的值手动设为null；</p>
+<p>24.new出来的String或者是Array等，使用typeof得到的都是”Object”；</p>
+<p>25.数组的定义方式多种多样，甚至可以只打逗号</p>
+<pre><code>Var a = [,,,];  //length = 3
+Var b = [1,2,];  //length = 2
+Var c = [1,2,,];  //length = 3
+</code></pre><p>26.数组的join方法返回一个由传入字符串分隔的字符串(这只是数组的方法)</p>
+<pre><code>Var arr = [1,2,3];
+Alert(arr.join(“0”));  //10203
+</code></pre><p>这一点应该可以用于输出标签上，比如每两个之间用<br>隔开</p>
+<p>27.可以通过pop和push方法操作数组，他们是在数组尾部进行操作，能够做到堆栈一样的效果，push返回参数为数组长度，pop返回出栈元素；</p>
+<p>28.和上面相似的还有shift和unshift方法，他们在数组的头部进行操作，如果用unshift传入多个参数的话，他们在数组中的顺序不会改变；</p>
+<p>29.IE7及以前的浏览器对于unshift的返回值不是新的长度，而是undefined；</p>
+<p>30.自带的sort排序函数比较鬼畜，是把所有东西都按照类似字符串排序的方法来的（数字也不例外），比如0,10,11,5就是一个排序后的结果；如果要让他按照需求来排序就得传入一个排序判断函数，话不多说剩下的自己百度；</p>
+<p>31.Slice方法可以方便的从数组中截取一段。Splice方法依次传入删除起始位置，删除数目，添加项目可实现删除，替换的功能；</p>
+<p>32.IE8+和其他一些的浏览器支持<code>querySelector</code>的方法，这个方法比<code>getElementById</code>等<strong>更加高效</strong>也更简便，用法和CSS选择器基本一致（但是不能选择伪类如”:hvoer”），并且效率更高</p>
+<pre><code>Date 2015-12-09T13:55:06.928Z 0z
+Date 2015-12-09T13:55:06.934Z 0.006z
+Date 2015-12-09T13:55:06.935Z 0.001z
+</code></pre><p>第一个是用的<code>getElementById</code>，第二个是<code>querySelector</code>，执行1E7次，效果很明显；</p>
+<p>33.在IE9+等浏览器中IndexOf获取元素在数组中第一次出现的位置，IndexLastOf则是最后一次出现；</p>
+<p><strong>34.</strong>数组有几个迭代方法非常有意思，有时间要探究一下他们的兼容性</p>
+<ol>
+<li><code>Every</code>对于所有元素执行后的返回值都为true才返回true</li>
+<li><code>Filter</code>将执行后的返回结果的值为true的元素进行返回，返回的是一个数组</li>
+<li><code>Foreach</code>仅仅执行函数，不返回任何值</li>
+<li><code>Some</code>对于所有函数的返回值只要存在一个为true结果即为true</li>
+<li><code>Map</code>返回一个执行后的结果数组</li>
+</ol>
+<p>这几种方法只需要传入函数的参数名，在执行的函数中可以通过形参获取数据的值，三个值分别为item,index,array；</p>
+<p>35.Date的构造函数可以传入两种参数，传入字符串或以逗号分隔开的ISO-608格式的时间</p>
+<p>36.Date的now方法可以获取到现在的时间（以毫秒计算），对于IE9之前的浏览器，可以在前面添上一个+号；</p>
+<p>37.有很多种方法可以格式化输出时间，其中有Date的输出的只是日期，有Time的输出的只是当日中的具体时间，输出格式依据浏览器而定（FF输出PM为下午）；</p>
+<p>38.正则表达式有两种定义方法，可以直接定义不需要加引号在//外写上搜索模式，i，g，m三种可以组合；如果使用RegExp定义的话则要使用引号扩起来，并且将匹配模式单独做参数传入；</p>
+<p>39.Test方法可以检测出字符串中是否有匹配成功的部分，如果有则返回true，否则false；exec方法在正则对象是global方式时可以遍历整个字符串，并且将匹配成功的部分存到外部，但是需要手动设置循环；</p>
+<p>40.每一次执行test或者exec过后，RegExp对象的属性都会进行更新，可以获取到一系列的值</p>
+<pre><code>var text = “this has been a short summer”;
+var pattern = /(.)hort/g;
+
+if (pattern.test(text)){
+    alert(RegExp.input);         //this has been a short summer
+    alert(RegExp.leftContext);     //this has been a
+    alert(RegExp.rightContext);     // summer
+    alert(RegExp.lastMatch);     //short
+    alert(RegExp.lastParen);     //s
+    alert(RegExp.multiline);     //false
+}
+</code></pre><p>41.超级鬼畜的函数定义方法</p>
+<pre><code>var sum = new Function(“num1”, “num2”, “return num1 + num2”);
+</code></pre><p>42.使用var定义的函数时，必须实现通过var声明或定义，但是用function定义的可以放在下面；</p>
+<p>43.对于函数来说有几个属性非常实用，最主要的this可以获取到父对象，Argument.callee可以获取到函数自身进行递归，避免了改变函数名时带来的不必要的麻烦；还有caller可以获取到调用当前函数的父函数；</p>
+<p>44.函数的length属性得到的值就是设置函数时需要传入的参数个数；</p>
+<p>45.使用new新创建的数字，字符串等得到的typeof都是object，并且<code>instanceof</code>原型的值返回true；</p>
+<p>46.Number的<code>toString</code>方法可以把传入参数作为基，输出数字在此基上的值（无前缀）；</p>
+<p>47.Number还有一个<code>toFix</code>方法，可以将数字输出为小数点后保留参数个的位数；</p>
+<p>48.另外还有<code>toExprotential</code>和<code>toPrecision</code>方法，分别是输出科学计数法的表达和有效位数的表达；</p>
+<p>49.<code>substr</code>方法的第二个参数是截出的长度，<code>substring</code>方法的第二个参数是截止的位置；</p>
+<p>50.<code>CharAt</code>方法可以得到一定位置的字符，而<code>charCodeAt</code>可以获得字符的Unicode十进制编码，反过来有一个函数是<code>fromCharCode</code>,可以将十进制的编码转换为字符串；</p>
+<p>51.在JS中字符是当作单字节存储的，中文也不例外</p>
+<pre><code>Var str = “6六6”;
+//Str.length = 3;
+//Str.charat(1) = “六”;
+</code></pre><p>52.与 <code>toUpperCase()</code>不同的是，<code>toLocaleUpperCase()</code>方法按照本地方式把字符串转换为大写。只有几种语言（如土耳其语）具有地方特有的大小写映射，所以最好还是用Local的方法；</p>
+<p>53.字符串的match方法等同于正则表达式的exec方法；</p>
+<p>54.同理的，字符串也有使用正则表达式进行筛选替换的方法</p>
+<pre><code>var text = “cat, bat, sat, fat”;
+var result = text.replace(“at”, “ond”);
+alert(result);
+//”cond, bat, sat, fat”
+result = text.replace(/at/g, “ond”);
+alert(result); 
+//”cond, bond, sond, fond”
+</code></pre><p>替换的时候还有些特别厉害的$符号开头的替换属性，自行百度；</p>
+<p>55.<code>encodeURL</code>会把字符串中的域名后面的部分中非标准字符转换成他对应的UTF-8码，而<code>encodeURLComponent</code>会把全部的非ASCII转变成UTF-8编嘛<strong>（.-_?~()’这些除外）</strong>，当然可想而知有对应的解码方法<code>decodeURL</code>；</p>
+<p><strong>56.</strong>Math的max方法可以选出传入参数中的最大值，然而我们要用数组时就会显得心有余而力不足，这个时候有一种特别厉害的方法值得记住，因为apply的第二个参数就是把参数当作数组传入，实现了巧妙的转换</p>
+<pre><code>var values = [1, 2, 3, 4, 5, 6, 7, 8];
+var max = Math.max.apply(Math, values); //8
+</code></pre><p>57.ceil，floor，round分别是对一个数向上取整，向下取整和四舍五入；</p>
+<p>58.defineProperty可以对对象的某一个属性进行细致的设置，不过要注意他前面可是Object：</p>
+<pre><code>var person = {};
+Object.defineProperty(person, “name”, {
+configurable: false,    //还有writable，enumerable，set，get属性   一共就6个
+value: “Nicholas”
+});
+</code></pre><p>59.如果是对一个已经定义好的对象属性添加set,get方法，那么就要用到<strong>defineSetter</strong>，和<strong>defineGetter</strong>来实现了：</p>
+<pre><code>Date.prototype.__defineGetter__(&apos;year&apos;,function() {
+return this.getFullYear();
+}); 
+</code></pre><p>60.Object的create方法可以有效的复制对象，传入参数为原型对象；</p>
+<p>61.在闭包中使用this指针并不会直接指向看起来存在的对象，而是会直接指向window，获得的变量将会是全局变量，如果要使用的话可以先存起来：</p>
+<pre><code>Var object = {
+    Name: ”wanlei”,
+    getName: function(){
+        Var that = this;
+        Return function(){
+            Return that.name;
+        };
+    }
+}
+</code></pre><p>这样的话执行object.getName得到的值就是wanlei了；</p>
+<p>62.同为全局变量，但是name不可以通过delete操作，而window.name可以使用delete删除掉；</p>
+<p>63.chrome提供了关于console的一些API，可以<strong>指定格式输出字符串，还可以用CSS来修饰</strong>，做出动画等等；</p>
+<p>64.不知道是不是我的问题，但是在setInterval中传入的函数只要加了括号他就会当时就运行一次（理论上来说应该是隔了指定时间过后运行的）；</p>
+<p>65.没有设置宽度时span标签里面的汉字有可能会自动换行，一定要记住设置CSS属性white-space：nowrap；</p>
+<p><strong>66.</strong>设施图片、脚本，CSS的onload事件一定要在设置src(href)之前，并且图片在设置src后即会开始下载；但是其他的则是添加进文档才开始下载；</p>
+<p>67.在Firefox中，出现在条件语句中的代码块不做活动对象初始化的处理，但是在其他的浏览器中会检索全局进行初始化，而IE会把对象作为局部变量处理；</p>
+<pre><code>Function a(b){
+If(b){Function c (){Alert(2333);}
+};}
+</code></pre><p>68.需要特别注意的是，由于浏览器端使用时是使用ajax来拉取.less文件，因此直接在本机文件系统打开（即地址是file://开头）或者是有跨域的情况下会拉取不到.less文件，导致样式无法生效;</p>
+<p>69.giligili eye!!!  giligili mind!!! 大家一起吸毒吧!!!</p>
+<p><img src="http://7xsm7w.com1.z0.glb.clouddn.com/giligili.gif" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/28/读Javascript高程之笔记/" data-id="cium6cphd000bngcsjk70nf3n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-主要关于Canvas和Node的一些笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/05/27/主要关于Canvas和Node的一些笔记/" class="article-date">
@@ -122,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/27/主要关于Canvas和Node的一些笔记/" data-id="ciucn0rrp0008pscs2c3p1q8u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/27/主要关于Canvas和Node的一些笔记/" data-id="cium6cphb000angcs9kcaoond" class="article-share-link">Share</a>
       
       
     </footer>
@@ -192,7 +430,7 @@ null 赋值会快 99%，因为它不会修改对象的结构，但是 delete 会
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/12/近期收获/" data-id="ciucn0rsp000dpscsppt8j6jn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/12/近期收获/" data-id="cium6cpie000engcs3qub81kz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -233,7 +471,7 @@ null 赋值会快 99%，因为它不会修改对象的结构，但是 delete 会
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/12/测试页面/" data-id="ciucn0rre0006pscshbs26aec" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/12/测试页面/" data-id="cium6cpgy0007ngcsaforguda" class="article-share-link">Share</a>
       
       
     </footer>
@@ -278,7 +516,7 @@ null 赋值会快 99%，因为它不会修改对象的结构，但是 delete 会
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/12/hello-world/" data-id="ciucn0rqr0000pscsys8doj60" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/12/hello-world/" data-id="cium6cpgd0002ngcswbmj3dd3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -322,6 +560,10 @@ null 赋值会快 99%，因为它不会修改对象的结构，但是 delete 会
       <ul>
         
           <li>
+            <a href="/2016/10/23/十月开发小记/">十月开发小记</a>
+          </li>
+        
+          <li>
             <a href="/2016/10/16/nginx配置文件中文解析/">nginx配置文件中文解析</a>
           </li>
         
@@ -335,10 +577,6 @@ null 赋值会快 99%，因为它不会修改对象的结构，但是 delete 会
         
           <li>
             <a href="/2016/08/10/转-作用域与作用域链/">[转]作用域与作用域链</a>
-          </li>
-        
-          <li>
-            <a href="/2016/08/10/对于redux的学习收集的资料/">对于redux的学习收集的资料</a>
           </li>
         
       </ul>
