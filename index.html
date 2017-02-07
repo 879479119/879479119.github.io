@@ -55,9 +55,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -67,6 +67,76 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-17年1月开发小记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/07/17年1月开发小记/" class="article-date">
+  <time datetime="2017-02-07T08:38:47.000Z" itemprop="datePublished">2017-02-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/07/17年1月开发小记/">17年1月开发小记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.在向<code>SVG</code>中添加新的元素时，需要手动的使用<code>createElementNS</code>方法，如果直接使用jquery里面的方法添加的话，他是不会显现出来的；</p>
+<p>2.有些元素是无法通过<code>append</code>方法添加的，比如<code>&lt;head&gt;</code>中的<code>meta</code>标签没有办法通过jquery动态添加，但是可以通过<code>attr</code>设置它的属性；</p>
+<p>3.使用<code>fetch</code>进行跨域资源获取时，只需要极简单的将<code>mode</code>设置为<code>no-cors</code>就可以了；</p>
+<p>4.自己<strong>强行郁闷</strong>了很久，想要在一个组件中同时使用<code>redux</code>的全局store和组件自身的state，这样会发出警告；如果有不同需要的话还是就简单的使用setState吧，可以用在只是有简单交互性并且页面上可能出现多次的组件上；</p>
+<p>5.<strong>fetch的跨域虽然可以通过no-cors实现</strong>，但是返回的<code>promise</code>却是一个空的对象，里面的数据没有任何用处；</p>
+<p>6.<a href="http://www.bilibili.com/index/catalogy/1-3day.json" target="_blank" rel="external">http://www.bilibili.com/index/catalogy/1-3day.json</a> 不知道怎么取得这个地址的资源</p>
+<p>7.在使用<code>ES6</code>时，<strong>千万不要</strong>手贱使用一些全局变量名字定义输出的对象或者其他数据，这样他不会是局部的，而是直接将其替换掉了，比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export default JSON = &#123;a:1&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样会将全局的JSON对象替换为{a:1}；</p>
+<p>8.<code>async/await</code> 是非常新的 API，属于 ES7，目前尚在 Stage 1(提议) 阶段，这是它的完整规范。使用 Babel 开启 runtime 模式后可以把 <code>async/await</code> 无痛编译成 ES5 代码。也可以直接使用 <code>regenerator</code> 来编译到 ES5。</p>
+<p>9.不要把一个有CSS动画的元素，甚至是通过绝对定位的SVG元素放到一个有图片背景的元素里面，这样会非常损耗性能，在手机上尤其突出；</p>
+<p>10.<strong>【实在太坑了】</strong>对于一些组件千万不要忘记将本身的事件屏蔽掉，checkbox这种东西<strong>点击一次</strong>的话，也会<strong>触发两次</strong>操作；</p>
+<p>11.H5开发最好的是在less中使用<code>rem</code>做单位，而在js中使用获取屏幕分辨率的函数计算长度或高度</p>
+<p>12.按照普通设计，当网站cookie信息有1 KB、网站首页共150个资源时，用户在请求过程中需要发送150 KB的cookie信息，在512 Kbps的常见上行带宽下，需要长达3秒左右才能全部发送完毕。 尽管这个过程可以和页面下载不同资源的时间并发，但毕竟对速度造成了影响。 而且这些信息在js/css/images/flash等静态资源上，几乎是没有任何必要的。 解决方案是启用和主站不同的域名来放置静态资源，也就是cookie free。</p>
+<p>13.将css放置在页面最上方应该是很自然的习惯，但第一个css内引入的图片下载是有可能堵塞后续的其他js的下载的。而在目前普遍过百的整页请求数的前提下，浏览器提供的仅仅数个并发，对于进行了良好优化甚至是前面有CDN的系统而言，是极大的性能瓶颈。 这也就衍生了<code>domain hash</code>技术来使用多个域名加大并发量（因为浏览器是基于<code>domain</code>的并发控制，而不是<code>page</code>），不过过多的散布会导致DNS解析上付出额外的代价，所以一般也是控制在<strong>2-4</strong>之间。 这里常见的一个性能小坑是没有机制去确保URL的哈希一致性（即同一个静态资源应该被哈希到同一个域名下），而导致资源被多次下载。</p>
+<p>14.我们可以使用<code>&lt;audio&gt;</code>元素流式加载音乐文件, 在JavaScript中调用<code>createMediaElementSource</code>方式, 直接操作<code>HTMLMediaElement</code>, 像<code>play()</code>和<code>pause()</code>的方法均可调用.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">context = new AudioContext();</span><br><span class="line">/* 声明我们的 MediaElementAudioSourceNode 变量 */</span><br><span class="line">var sound,</span><br><span class="line">    /* 新建一个 `&lt;audio&gt;` 元素. Chrome 支持通过 `new Audio()` 创建,</span><br><span class="line">     * Firefox 需要通过 `createElement` 方法创建. */</span><br><span class="line">    audio = new Audio();</span><br><span class="line"></span><br><span class="line">/* 添加 `canplay` 事件侦听当文件可以被播放时. */</span><br><span class="line">audio.addEventListener(&apos;canplay&apos;, function() &#123;</span><br><span class="line">    /* 现在这个文件可以 `canplay` 了, 从 `&lt;audio&gt;` 元素创建一个</span><br><span class="line">     * MediaElementAudioSourceNode(媒体元素音频源结点) . */</span><br><span class="line">    sound = context.createMediaElementSource(audio);</span><br><span class="line">    /* 将 MediaElementAudioSourceNode 与 AudioContext 关联 */</span><br><span class="line">    sound.connect(context.destination);</span><br><span class="line">    /*通过我们可以 `play` `&lt;audio&gt;` 元素了 */</span><br><span class="line">    audio.play();</span><br><span class="line">&#125;);</span><br><span class="line">audio.src = &apos;/path/to/audio.mp3&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>15.<code>window.performance</code>中有一些函数可以准确的测量时间，比在执行程序前后使用console.log更加准确，此外chrome还支持<code>memory</code>属性显示现在浏览器使用的内存（堆内存）</p>
+<p>16.在新的audio-context接口中使用的有关于时间的接口，比一般使用的date更加精确，可以做到准确调音的水准；</p>
+<p>17.在处理声音的时候，如果需要延迟改变一些变量，不要使用<code>setTimeout</code><br>毫秒级别的控制并不够精确，JS主线程中有其他高优先级的任务要进行，页面布局，垃圾回收以及事件循环中的回调函数，并且其发生时间还会被当前页面是否在后台所影响，如果是后台程序会比前台发生的更加慢；取而代之的是<code>setValueAtTime</code>这个函数</p>
+<p>18.将声音升高一个半音程（十二分之一个八音度）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function playNote(semitones) &#123;</span><br><span class="line">  // Assume a new source was created from a buffer.</span><br><span class="line">  var semitoneRatio = Math.pow(2, 1/12);</span><br><span class="line">  source.playbackRate.value = Math.pow(semitoneRatio, semitones);</span><br><span class="line">  source.start(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>19.八度之间的频率是两倍的关系，比如A2的频率就是A3的两倍；根据上面一个计算出来的每个半音程之间的倍数是<code>1.0595</code>左右</p>
+<p>20.<strong>The indexes of the output can be mapped linearly between zero and the nyquist frequency</strong><br>按照频域取出来的索引其实是0到奈奎斯特采样频率之间的值</p>
+<p>21.<code>document</code>上的<code>webkitvisibilitychange</code>事件在当前页面进入前台或进入后台时触发，通过检查<code>document.webkitHidden</code>可以判断</p>
+<p>22.如果想要调试canvas元素或者webGL，在chrome://flags页面中把实验性的chrome开发工具打开，重新启动后在设置里面即可打开canvas profile对绘画元素进行调试<em>(旧版本)</em></p>
+<p>23.nginx如果重新配置后使用<code>nginx -s reload</code>发现没有变化，需要<code>nginx -s stop</code>停止后在重新开启</p>
+<p>24.有些页面可能有反爬虫措施，通过后台直接请求不对头进行包装的话会给你返回一顿根本无法解析的乱码（<a href="http://www.bilibili.com/index/catalogy/13-3day.json）" target="_blank" rel="external">http://www.bilibili.com/index/catalogy/13-3day.json）</a></p>
+<p>25.浏览器的全屏显示事件必须交给点击事件触发<em>（怎么判断我是点击事件触发的？？）</em></p>
+<p>26.es6没有静态变量的说法，如果要定义常量可以用如下方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Agent &#123;</span><br><span class="line">    static get CIRCLE() &#123;</span><br><span class="line">      return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    static get SQUARE() &#123;</span><br><span class="line">      return 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Agent.CIRCLE即为1，同理我们可以把一个对象return回去，里面全部包含着常量；</p>
+<p>27.<code>vertical-align</code>属性只对有valign属性的元素起作用，比如<code>td</code>，<code>th</code>，<code>caption</code>等，对<code>span</code>，<code>div</code>没有用；</p>
+<p>28.如何<code>import</code>一个文件中的所有图片？就像这样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let requireContext = require.context(&quot;../assets/image/&quot;,true,/^\.\/.*\.gif$/)</span><br><span class="line">const images = requireContext.keys().map(requireContext)</span><br></pre></td></tr></table></figure></p>
+<p>29.假如有以下ES6代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr1 = [1,0]</span><br><span class="line">arr2 = [0,1]</span><br><span class="line">arr3.push(arr1,arr2)</span><br><span class="line">arr1.length = 0</span><br><span class="line">arr2.length = 0</span><br></pre></td></tr></table></figure></p>
+<p>因为是对象的引用，最后得到的只是一个空的数组<br>解决办法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr3.push([...arr1],[...arr2])</span><br></pre></td></tr></table></figure></p>
+<p>30.以下总结自google开发者中心文档：<br><code>$_</code> 可以获取到上一个表达式计算出来的值<br><code>$0</code> 测试的时候还在通过dom操作选择节点？不行的哈，直接通过这个拿到控制台里选定的元素<br><code>$</code>和<code>$$</code> 在没有引入jquery等的时候，前一个选择单个DOM后一个选择出一个数组</p>
+<p>31.在用<code>canvas</code>做东西的时候一定要想清楚是不是只有一个或者两个图层，如果出现遮盖的情况就必须要用双<code>canvas</code>或者清空整个画布了，而且小范围清除重绘反而会增加渲染开销</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/07/17年1月开发小记/" data-id="ciyvapxbb0000g4csqxbikxm6" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-十月开发小记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -107,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/23/十月开发小记/" data-id="cium6cpgo0006ngcs5jp89ajq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/23/十月开发小记/" data-id="ciyvapxdn000ag4csd7buikqx" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -143,7 +213,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/16/nginx配置文件中文解析/" data-id="cium6cpgg0003ngcs9okt1fi7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/16/nginx配置文件中文解析/" data-id="ciyvapxd50004g4csdbrnb3hf" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -203,7 +273,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/09/node文档阅读笔记/" data-id="cium6cph90009ngcsvg73ckzs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/10/09/node文档阅读笔记/" data-id="ciyvapxda0006g4csr2eh4hx9" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -256,117 +326,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/17/进行项目开发时做的一些小笔记/" data-id="cium6cphh000dngcsx80k8nhi" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-转-作用域与作用域链" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/10/转-作用域与作用域链/" class="article-date">
-  <time datetime="2016-08-10T09:44:43.000Z" itemprop="datePublished">2016-08-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/10/转-作用域与作用域链/">[转]作用域与作用域链</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="作用域，作用域链，域解析"><a href="#作用域，作用域链，域解析" class="headerlink" title="作用域，作用域链，域解析"></a>作用域，作用域链，域解析</h2><hr>
-<p>转载自   <em>陈玉</em></p>
-<h3 id="执行环境"><a href="#执行环境" class="headerlink" title="执行环境"></a>执行环境</h3><p>JavaScript执行环境，也叫作JavaScript执行上下文（我百度翻译的(＾－＾)，英文名叫做execution context）<br><code>执行环境：</code>JavaScript代码都是在执行环境中被执行的。执行环境是一个概念，一种机制，用来完成JavaScript运行时在作用域、生命周期等方面的处理，<code>它定义了变量或函数是否有权访问其他数据，决定各自行为。</code></p>
-<p>而且每个执行环境都会有一个就是变量对象VO（variable object），环境中<code>变量和函数声明保存在VO中。</code><br><code>注意</code>，函数表达式（与函数声明相对）不包含在变量对象之中。，在代码执行开始，会进入不同的执行环境，这些执行环境共同构成了一个执行环境栈。</p>
-<p>如果这个环境是函数，则将其活动对象AO(activation object)作为变量对象,活动对象最开始的两个属性是arguments和this</p>
-<p>在下个图中，拥有一些函数上下文EC1和全局上下文Global EC，当EC1进入和退出全局上下文的时候下面的栈将会发生变化：</p>
-<p>JS中一共有三种执行环境：</p>
-<ol>
-<li>全局执行环境（Global code）   JS代码开始运行时默认的<br>即全局的、不在任何函数里面的代码，例如：一个js文件、嵌入在HTML页面中的js代码等<br><code>注意：</code></li>
-</ol>
-<ul>
-<li>保存在全局执行环境中的所有变量和函数，当其应用程序退出，如：关闭网页或浏览器时被销毁</li>
-<li>全局执行环境是window的对象（所有全局函数和变量都是作为window的属性和方法创建的）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var a=2;</span><br><span class="line">function setB()&#123;</span><br><span class="line">	return 123;</span><br><span class="line">&#125;</span><br><span class="line">console.log(a);</span><br><span class="line">console.log(setB());</span><br><span class="line">console.log(window.a);</span><br><span class="line">console.log(window.setB());</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ol>
-<li>函数执行环境（Function code） 代码进入了一个函数<br>每个函数有自己的执行环境，有相应的执行栈</li>
-</ol>
-<ul>
-<li>函数里的局部作用域里的变量替换全局变量，但作用域仅限在函数体内的这个环境<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a=&apos;哈哈哈~&apos;;</span><br><span class="line">function setB()&#123;</span><br><span class="line">	a=&apos;啧啧&apos;;</span><br><span class="line">&#125;</span><br><span class="line">setB();</span><br><span class="line">console.log(a);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>通过传参，可以替换函数体内的局部变量，但作用域仅限在函数体内的这个环境</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a=&apos;哈哈哈~&apos;;</span><br><span class="line">function setB(a)&#123;</span><br><span class="line">	console.log(a);</span><br><span class="line">&#125;</span><br><span class="line">setB(&apos;嗯嗯&apos;);</span><br><span class="line">console.log(a);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>函数体内还包含有函数，只有通过外层函数，才能访问内层函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var a=1;</span><br><span class="line">function setA()&#123;</span><br><span class="line">	function setB()&#123;</span><br><span class="line">	var b=2;</span><br><span class="line">		console.log(a);</span><br><span class="line">		console.log(b);</span><br><span class="line">	&#125;</span><br><span class="line">	setB();</span><br><span class="line">&#125;</span><br><span class="line">setA();</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ol>
-<li>eval()方法执行代码</li>
-</ol>
-<p>eval()就像是一个完整的ECMAScript解析器，只接受一个参数，即要执行的ECMAScript（或JavaScript）字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">eval(&quot;console.log(&apos;哈哈&apos;)&quot;);</span><br><span class="line">等价于</span><br><span class="line">console.log(&apos;哈哈&apos;);</span><br></pre></td></tr></table></figure></p>
-<p>通过eval()执行的代码被认为是包含该次调用的执行环境的一部分，因此被执行的代码具有与该执行环境相同的作用域链<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eval(&quot;function sayHi()&#123;console.log(&apos;hi&apos;);&#125;&quot;);</span><br><span class="line">sayHi();</span><br></pre></td></tr></table></figure></p>
-<p>严格模式下，访问不到eval()中创建的任何变量和函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;use strict&quot;;</span><br><span class="line">eval(&quot;function sayHi()&#123;console.log(&apos;hi&apos;);&#125;&quot;);</span><br><span class="line">sayHi();</span><br></pre></td></tr></table></figure></p>
-<p>应用：JSON解析器<br>危险：代码注入！！！（用户输入数据）</p>
-<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p><code>域：</code>空间，范围，区域…<br><code>作用：</code>读，写</p>
-<p>作用域（scope）。在很多语言中（C++，C#，Java），作用域都是通过代码块（由{}包起来的代码）来决定的，但是，在JavaScript作用域是跟函数相关的，也可以说成是function-based。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function test(o)&#123;</span><br><span class="line">	var i=0;</span><br><span class="line">	if(typeof o==&quot;object&quot;)&#123;</span><br><span class="line">		var j=0;</span><br><span class="line">		for(var k=0;k&lt;10;k++)&#123;</span><br><span class="line">			console.log(k);</span><br><span class="line">		&#125;</span><br><span class="line">		console.log(k);		</span><br><span class="line">	&#125;</span><br><span class="line">	console.log(j);</span><br><span class="line">&#125;</span><br><span class="line">var obj = new Object();</span><br><span class="line">test(obj);</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>全局作用域中的对象可以在代码的任何地方访问，一般来说，下面情况的对象会在全局作用域中： </li>
-</ol>
-<p>最外层函数和在最外层函数外面定义的变量  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 最外层函数和在最外层函数外面定义的变量  </span><br><span class="line">var a = &quot;out&quot;; //最外层变量</span><br><span class="line">function outFn() &#123; //最外层函数</span><br><span class="line">	var b = &quot;in&quot;;</span><br><span class="line">	function inFn() &#123; //内层函数</span><br><span class="line">		console.log(b);</span><br><span class="line">	&#125;</span><br><span class="line">	inFn();</span><br><span class="line">&#125;</span><br><span class="line">console.log(a); //我是最外层变量</span><br><span class="line">outFn(); </span><br><span class="line">console.log(b); //in is not defined</span><br><span class="line">inFn(); //inFn is not defined</span><br></pre></td></tr></table></figure>
-<p> 没有通过关键字”var”声明的变量 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function outFn2() &#123;</span><br><span class="line">	a = &quot;未定义&quot;;</span><br><span class="line">	var a1 = &quot;内层变量2&quot;;</span><br><span class="line">&#125;</span><br><span class="line">outFn2();//要先执行这个函数，否则根本不知道里面是啥</span><br><span class="line">console.log(a); //未定义直接赋值的变量</span><br><span class="line">console.log(a1); //inVariable2 is not defined</span><br></pre></td></tr></table></figure>
-<p>浏览器中，window对象的属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window对象的内置属性都拥有全局作用域，</span><br><span class="line">如: window.name、window.location、window.top 等</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>局部作用域(函数作用域)所有的变量和函数只能在作用域内部使用。函数在声明它们的函数体以及这个函数体嵌套的任意函数内都是有定义的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var foo = 1; </span><br><span class="line">window.bar = 2;</span><br><span class="line">function baz()&#123; </span><br><span class="line">	a = 3; </span><br><span class="line">	var b = 4; </span><br><span class="line">&#125; </span><br><span class="line">// Global scope: foo, bar, baz, a</span><br><span class="line">// Local scope: b</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><strong>函数声明提前：</strong><br>js的函数作用域是指在函数内声明的所有变量在函数内始终都是可以见，意味着变量在声明之前就可以使用了，这个特性被非正式命名为<code>声明提前</code>即：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var a=1;</span><br><span class="line">function fn1()&#123;</span><br><span class="line">	console.log(a);//???</span><br><span class="line">	var a=2;</span><br><span class="line">	console.log(a);</span><br><span class="line">&#125;</span><br><span class="line">fn1();</span><br><span class="line">console.log(a);</span><br><span class="line">-------------------------------------------------</span><br><span class="line">var a=1</span><br><span class="line">function fn1()&#123;</span><br><span class="line">	var a;//在函数顶部声明了局部变量</span><br><span class="line">	console.log(a);//变量存在，但其值是&quot;undefined&quot;</span><br><span class="line">	a=2;</span><br><span class="line">	console.log(a);</span><br><span class="line">&#125;</span><br><span class="line">fn1();</span><br><span class="line">console.log(a);</span><br></pre></td></tr></table></figure></p>
-<h2 id="作用域链-scope-chain"><a href="#作用域链-scope-chain" class="headerlink" title="作用域链(scope chain)"></a>作用域链(scope chain)</h2><p>当代码在一个环境中执行时，会创建变量对象的一个作用域链（是保证对执行环境有权访问的的所有变量和函数的<code>有序访问</code>），<code>这个作用域链是一个对象列表或者链表，这组对象定义了代码“作用域”中的变量</code><br><code>创建规则：</code></p>
-<p>作用域链的前端，始终都是当前执行的代码<br>作用域链中的下一个变量对象，来自包含（外部环境）<br>而再下一个对象来自下一个包含环境<br>一直延续到全局执行环境（全局执行坏境的对象始终都是作用域链中的最后一个对象）</p>
-<p> 一个函数创建时，javascript后台(引擎)会默认创建一个仅供后台使用的内部属性[[Scope]]，此属性存储函数的作用域链，如果是全局函数，此时则包含一个变量对象(全局变量)，如果是嵌套函数(闭包)，作用域链还加上了父函数的变量对象。例如下面的这个全局函数:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function add(num1,num2)&#123;</span><br><span class="line">   var sum = num1 + num2;</span><br><span class="line">   return sum;</span><br><span class="line">&#125;</span><br><span class="line">var total=add(5,10);</span><br><span class="line">console.log(total);</span><br></pre></td></tr></table></figure></p>
-<p>b) 函数被调用时–add(5,10)，javascript后台会创建一个内部对象(execution context)–“执行环境”或“运行期上下文”，活动对象作为函数执行期的一个变量对象，包含所有局部变量(在函数内定义的)、命名参数、arguments、this，它会被推入到执行环境作用域链的前端(如下图)。每执行一次函数都会创建一个新的执行环境，当函数执行完毕执行环境就会被销毁。</p>
-<p>图中矩形表示特定的环境。其中内部环境可以通过作用域链访问所有的外部环境，但外部环境不能访问内部变量环境中的任何变量和函数。这些环境之间的联系是线性的，有次序的。每个环境变量都可以向上搜索作用域链，以查询变量和函数名；反之则是不行。<code>注意:</code>函数参数也被当作变量来对待，因此其访问规则与执行环境中的其他变量相同。</p>
-<p>查询标识符(标识符指的是：变量名称，函数声明，形参，等等。)：标示符的解析是沿着作用域链一级一级的搜索标示符的过程，搜索过程都是从作用域链的前端开始，然后逐级向后回溯，直到找到标识符为止<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var color=&quot;blue&quot;;</span><br><span class="line">function getColor()&#123;</span><br><span class="line">	return color;</span><br><span class="line">&#125;</span><br><span class="line">console.log(getColor());//&quot;blue&quot;</span><br></pre></td></tr></table></figure></p>
-<h2 id="延长作用域链"><a href="#延长作用域链" class="headerlink" title="延长作用域链"></a>延长作用域链</h2><p>try-catch语句的catch块<br>with语句<br>  这两个语句都会在原本的作用域链的前端添加一个变量对象。对于with语句来说，新添加的变量对象包含着with括号中指定对象的所有属性和方法所作的变量声明。对于catch来说，当try块发生错误时，代码执行流程自动转入到catch块，并将异常对象推入到作用域链的前端。catch块执行完毕后，作用域链就会返回原来的状态。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function initUI()&#123;</span><br><span class="line">   with(document)&#123;</span><br><span class="line">        var bd = body,</span><br><span class="line">	        links = getElementsByTagName(&quot;a&quot;),</span><br><span class="line">	        i = 0,</span><br><span class="line">	        len = links.length;</span><br><span class="line">        while(i&lt;len)&#123;</span><br><span class="line">            update(links[i++]);</span><br><span class="line">        &#125;</span><br><span class="line">        getElementById(&quot;go-btn&quot;).onclick = function()&#123;</span><br><span class="line">            start();</span><br><span class="line">        &#125;;</span><br><span class="line">        bd.className = &quot;active&quot;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>当代码流执行到一个with表达式时，执行环境的作用域链会被临时改变，此时with的变量对象会被创建添加到作用域链的前端，这就意味着此时函数的所有局部变量都被推入到第二个作用域链中的变量对象，如下图：</p>
-<p><code>注意：</code>在执行with语句时，访问局部变量的代价更高了。所以尽可能避免使用with语句，可以使用局部变量代替<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var doc = document; // 代替with(document)&#123;...&#125;</span><br></pre></td></tr></table></figure></p>
-<p>##域解析</p>
-<ol>
-<li>浏览器：</li>
-</ol>
-<p>预解析：<br>“js解析器”<br>“找一些东西”：var， function<br>，参数<br>a=未定义<br>所有的变量，在正式运行代码之前，都提前赋了一个值（未定义）<br>fn1=function fn1(){console.log(1);}<br>所有的函数，在正式运行代码之前，都是整个函数块<br><code>注意：</code>遇到重名，变量和函数重名，就留下函数，与上下文没有关系，注只先找var ，function声明的，函数重名，则采用覆盖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(a);</span><br><span class="line">var a=2;</span><br><span class="line">function fn1()&#123;</span><br><span class="line">	console.log(1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>逐行解读代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">表达式：= + - * / ++ -- ！参数</span><br><span class="line">表达式可以修改预解析的值！</span><br><span class="line">函数调用：</span><br><span class="line">同理函数作用域也发生：</span><br><span class="line">预解析和逐行解读代码</span><br><span class="line">函数：由里到外（作用域链）</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">console.log(a);//不会从下面取值，直接从预解析的仓库里取出undefined</span><br><span class="line">var a=2;</span><br><span class="line">console.log(a);</span><br><span class="line">function fn1()&#123;</span><br><span class="line">	console.log(1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参考链接：<br><a href="http://www.cnblogs.com/leolai/archive/2012/06/17/2552326.html" target="_blank" rel="external">https://gaohaoyang.github.io/2015/05/20/scope/</a></p>
-<p><a href="http://dmitrysoshnikov.com/ecmascript/javascript-the-core/#execution-context" target="_blank" rel="external">http://dmitrysoshnikov.com/ecmascript/javascript-the-core/#execution-context</a></p>
-<p>参考资料：<br>javaScript高级程序设计<br>javaScript权威指南</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/10/转-作用域与作用域链/" data-id="cium6cphe000cngcsrghc0en1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/17/进行项目开发时做的一些小笔记/" data-id="ciyvapxdu000dg4csf3xxdeq5" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -379,7 +339,7 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -397,7 +357,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
     </div>
   </div>
 
@@ -405,9 +365,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/02/07/17年1月开发小记/">17年1月开发小记</a>
+          </li>
         
           <li>
             <a href="/2016/10/23/十月开发小记/">十月开发小记</a>
@@ -425,10 +389,6 @@
             <a href="/2016/08/17/进行项目开发时做的一些小笔记/">进行项目开发时做的一些小笔记</a>
           </li>
         
-          <li>
-            <a href="/2016/08/10/转-作用域与作用域链/">[转]作用域与作用域链</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -441,8 +401,8 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2016 RockSAMA<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      &copy; 2017 RockSAMA<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

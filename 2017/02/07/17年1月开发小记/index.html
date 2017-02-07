@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>17年1月开发小记 | 磊磊SAMA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.在向SVG中添加新的元素时，需要手动的使用createElementNS方法，如果直接使用jquery里面的方法添加的话，他是不会显现出来的；
+2.有些元素是无法通过append方法添加的，比如&amp;lt;head&amp;gt;中的meta标签没有办法通过jquery动态添加，但是可以通过attr设置它的属性；
+3.使用fetch进行跨域资源获取时，只需要极简单的将mode设置为no-cors就可以了；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="17年1月开发小记">
+<meta property="og:url" content="http://yoursite.com/2017/02/07/17年1月开发小记/index.html">
+<meta property="og:site_name" content="磊磊SAMA">
+<meta property="og:description" content="1.在向SVG中添加新的元素时，需要手动的使用createElementNS方法，如果直接使用jquery里面的方法添加的话，他是不会显现出来的；
+2.有些元素是无法通过append方法添加的，比如&amp;lt;head&amp;gt;中的meta标签没有办法通过jquery动态添加，但是可以通过attr设置它的属性；
+3.使用fetch进行跨域资源获取时，只需要极简单的将mode设置为no-cors就可以了；">
+<meta property="og:updated_time" content="2017-02-07T09:00:00.966Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="17年1月开发小记">
+<meta name="twitter:description" content="1.在向SVG中添加新的元素时，需要手动的使用createElementNS方法，如果直接使用jquery里面的方法添加的话，他是不会显现出来的；
+2.有些元素是无法通过append方法添加的，比如&amp;lt;head&amp;gt;中的meta标签没有办法通过jquery动态添加，但是可以通过attr设置它的属性；
+3.使用fetch进行跨域资源获取时，只需要极简单的将mode设置为no-cors就可以了；">
+  
+    <link rel="alternate" href="/atom.xml" title="磊磊SAMA" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">磊磊SAMA</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">why don&#39;t you get to fly in the air?</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-17年1月开发小记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/07/17年1月开发小记/" class="article-date">
+  <time datetime="2017-02-07T08:38:47.000Z" itemprop="datePublished">2017-02-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      17年1月开发小记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.在向<code>SVG</code>中添加新的元素时，需要手动的使用<code>createElementNS</code>方法，如果直接使用jquery里面的方法添加的话，他是不会显现出来的；</p>
+<p>2.有些元素是无法通过<code>append</code>方法添加的，比如<code>&lt;head&gt;</code>中的<code>meta</code>标签没有办法通过jquery动态添加，但是可以通过<code>attr</code>设置它的属性；</p>
+<p>3.使用<code>fetch</code>进行跨域资源获取时，只需要极简单的将<code>mode</code>设置为<code>no-cors</code>就可以了；</p>
+<p>4.自己<strong>强行郁闷</strong>了很久，想要在一个组件中同时使用<code>redux</code>的全局store和组件自身的state，这样会发出警告；如果有不同需要的话还是就简单的使用setState吧，可以用在只是有简单交互性并且页面上可能出现多次的组件上；</p>
+<p>5.<strong>fetch的跨域虽然可以通过no-cors实现</strong>，但是返回的<code>promise</code>却是一个空的对象，里面的数据没有任何用处；</p>
+<p>6.<a href="http://www.bilibili.com/index/catalogy/1-3day.json" target="_blank" rel="external">http://www.bilibili.com/index/catalogy/1-3day.json</a> 不知道怎么取得这个地址的资源</p>
+<p>7.在使用<code>ES6</code>时，<strong>千万不要</strong>手贱使用一些全局变量名字定义输出的对象或者其他数据，这样他不会是局部的，而是直接将其替换掉了，比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export default JSON = &#123;a:1&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样会将全局的JSON对象替换为{a:1}；</p>
+<p>8.<code>async/await</code> 是非常新的 API，属于 ES7，目前尚在 Stage 1(提议) 阶段，这是它的完整规范。使用 Babel 开启 runtime 模式后可以把 <code>async/await</code> 无痛编译成 ES5 代码。也可以直接使用 <code>regenerator</code> 来编译到 ES5。</p>
+<p>9.不要把一个有CSS动画的元素，甚至是通过绝对定位的SVG元素放到一个有图片背景的元素里面，这样会非常损耗性能，在手机上尤其突出；</p>
+<p>10.<strong>【实在太坑了】</strong>对于一些组件千万不要忘记将本身的事件屏蔽掉，checkbox这种东西<strong>点击一次</strong>的话，也会<strong>触发两次</strong>操作；</p>
+<p>11.H5开发最好的是在less中使用<code>rem</code>做单位，而在js中使用获取屏幕分辨率的函数计算长度或高度</p>
+<p>12.按照普通设计，当网站cookie信息有1 KB、网站首页共150个资源时，用户在请求过程中需要发送150 KB的cookie信息，在512 Kbps的常见上行带宽下，需要长达3秒左右才能全部发送完毕。 尽管这个过程可以和页面下载不同资源的时间并发，但毕竟对速度造成了影响。 而且这些信息在js/css/images/flash等静态资源上，几乎是没有任何必要的。 解决方案是启用和主站不同的域名来放置静态资源，也就是cookie free。</p>
+<p>13.将css放置在页面最上方应该是很自然的习惯，但第一个css内引入的图片下载是有可能堵塞后续的其他js的下载的。而在目前普遍过百的整页请求数的前提下，浏览器提供的仅仅数个并发，对于进行了良好优化甚至是前面有CDN的系统而言，是极大的性能瓶颈。 这也就衍生了<code>domain hash</code>技术来使用多个域名加大并发量（因为浏览器是基于<code>domain</code>的并发控制，而不是<code>page</code>），不过过多的散布会导致DNS解析上付出额外的代价，所以一般也是控制在<strong>2-4</strong>之间。 这里常见的一个性能小坑是没有机制去确保URL的哈希一致性（即同一个静态资源应该被哈希到同一个域名下），而导致资源被多次下载。</p>
+<p>14.我们可以使用<code>&lt;audio&gt;</code>元素流式加载音乐文件, 在JavaScript中调用<code>createMediaElementSource</code>方式, 直接操作<code>HTMLMediaElement</code>, 像<code>play()</code>和<code>pause()</code>的方法均可调用.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">context = new AudioContext();</span><br><span class="line">/* 声明我们的 MediaElementAudioSourceNode 变量 */</span><br><span class="line">var sound,</span><br><span class="line">    /* 新建一个 `&lt;audio&gt;` 元素. Chrome 支持通过 `new Audio()` 创建,</span><br><span class="line">     * Firefox 需要通过 `createElement` 方法创建. */</span><br><span class="line">    audio = new Audio();</span><br><span class="line"></span><br><span class="line">/* 添加 `canplay` 事件侦听当文件可以被播放时. */</span><br><span class="line">audio.addEventListener(&apos;canplay&apos;, function() &#123;</span><br><span class="line">    /* 现在这个文件可以 `canplay` 了, 从 `&lt;audio&gt;` 元素创建一个</span><br><span class="line">     * MediaElementAudioSourceNode(媒体元素音频源结点) . */</span><br><span class="line">    sound = context.createMediaElementSource(audio);</span><br><span class="line">    /* 将 MediaElementAudioSourceNode 与 AudioContext 关联 */</span><br><span class="line">    sound.connect(context.destination);</span><br><span class="line">    /*通过我们可以 `play` `&lt;audio&gt;` 元素了 */</span><br><span class="line">    audio.play();</span><br><span class="line">&#125;);</span><br><span class="line">audio.src = &apos;/path/to/audio.mp3&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>15.<code>window.performance</code>中有一些函数可以准确的测量时间，比在执行程序前后使用console.log更加准确，此外chrome还支持<code>memory</code>属性显示现在浏览器使用的内存（堆内存）</p>
+<p>16.在新的audio-context接口中使用的有关于时间的接口，比一般使用的date更加精确，可以做到准确调音的水准；</p>
+<p>17.在处理声音的时候，如果需要延迟改变一些变量，不要使用<code>setTimeout</code><br>毫秒级别的控制并不够精确，JS主线程中有其他高优先级的任务要进行，页面布局，垃圾回收以及事件循环中的回调函数，并且其发生时间还会被当前页面是否在后台所影响，如果是后台程序会比前台发生的更加慢；取而代之的是<code>setValueAtTime</code>这个函数</p>
+<p>18.将声音升高一个半音程（十二分之一个八音度）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function playNote(semitones) &#123;</span><br><span class="line">  // Assume a new source was created from a buffer.</span><br><span class="line">  var semitoneRatio = Math.pow(2, 1/12);</span><br><span class="line">  source.playbackRate.value = Math.pow(semitoneRatio, semitones);</span><br><span class="line">  source.start(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>19.八度之间的频率是两倍的关系，比如A2的频率就是A3的两倍；根据上面一个计算出来的每个半音程之间的倍数是<code>1.0595</code>左右</p>
+<p>20.<strong>The indexes of the output can be mapped linearly between zero and the nyquist frequency</strong><br>按照频域取出来的索引其实是0到奈奎斯特采样频率之间的值</p>
+<p>21.<code>document</code>上的<code>webkitvisibilitychange</code>事件在当前页面进入前台或进入后台时触发，通过检查<code>document.webkitHidden</code>可以判断</p>
+<p>22.如果想要调试canvas元素或者webGL，在chrome://flags页面中把实验性的chrome开发工具打开，重新启动后在设置里面即可打开canvas profile对绘画元素进行调试<em>(旧版本)</em></p>
+<p>23.nginx如果重新配置后使用<code>nginx -s reload</code>发现没有变化，需要<code>nginx -s stop</code>停止后在重新开启</p>
+<p>24.有些页面可能有反爬虫措施，通过后台直接请求不对头进行包装的话会给你返回一顿根本无法解析的乱码（<a href="http://www.bilibili.com/index/catalogy/13-3day.json）" target="_blank" rel="external">http://www.bilibili.com/index/catalogy/13-3day.json）</a></p>
+<p>25.浏览器的全屏显示事件必须交给点击事件触发<em>（怎么判断我是点击事件触发的？？）</em></p>
+<p>26.es6没有静态变量的说法，如果要定义常量可以用如下方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Agent &#123;</span><br><span class="line">    static get CIRCLE() &#123;</span><br><span class="line">      return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    static get SQUARE() &#123;</span><br><span class="line">      return 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Agent.CIRCLE即为1，同理我们可以把一个对象return回去，里面全部包含着常量；</p>
+<p>27.<code>vertical-align</code>属性只对有valign属性的元素起作用，比如<code>td</code>，<code>th</code>，<code>caption</code>等，对<code>span</code>，<code>div</code>没有用；</p>
+<p>28.如何<code>import</code>一个文件中的所有图片？就像这样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let requireContext = require.context(&quot;../assets/image/&quot;,true,/^\.\/.*\.gif$/)</span><br><span class="line">const images = requireContext.keys().map(requireContext)</span><br></pre></td></tr></table></figure></p>
+<p>29.假如有以下ES6代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr1 = [1,0]</span><br><span class="line">arr2 = [0,1]</span><br><span class="line">arr3.push(arr1,arr2)</span><br><span class="line">arr1.length = 0</span><br><span class="line">arr2.length = 0</span><br></pre></td></tr></table></figure></p>
+<p>因为是对象的引用，最后得到的只是一个空的数组<br>解决办法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr3.push([...arr1],[...arr2])</span><br></pre></td></tr></table></figure></p>
+<p>30.以下总结自google开发者中心文档：<br><code>$_</code> 可以获取到上一个表达式计算出来的值<br><code>$0</code> 测试的时候还在通过dom操作选择节点？不行的哈，直接通过这个拿到控制台里选定的元素<br><code>$</code>和<code>$$</code> 在没有引入jquery等的时候，前一个选择单个DOM后一个选择出一个数组</p>
+<p>31.在用<code>canvas</code>做东西的时候一定要想清楚是不是只有一个或者两个图层，如果出现遮盖的情况就必须要用双<code>canvas</code>或者清空整个画布了，而且小范围清除重绘反而会增加渲染开销</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/07/17年1月开发小记/" data-id="ciyvapxbb0000g4csqxbikxm6" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/23/十月开发小记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">十月开发小记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/02/07/17年1月开发小记/">17年1月开发小记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/23/十月开发小记/">十月开发小记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/16/nginx配置文件中文解析/">nginx配置文件中文解析</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/09/node文档阅读笔记/">node文档阅读笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/17/进行项目开发时做的一些小笔记/">进行项目开发时做的一些小笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 RockSAMA<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
